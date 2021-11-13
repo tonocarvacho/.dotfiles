@@ -1,0 +1,18 @@
+{
+  "diagnostic.errorSign": "×",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.enableSign": false,
+  "eslint.autoFixOnSave": true,
+  "diagnostic.enableHighlightLineNumber": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "graphql",
+    "typescript.tsx"
+  ]
+}
