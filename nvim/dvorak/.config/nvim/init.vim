@@ -102,7 +102,7 @@ call plug#end()
 
 "let g:NERDTreeDirArrowExpandable = '▸'
 "let g:NERDTreeDirArrowCollapsible = '▾'
-let $PATH = "D:\\Programas\\Git\\usr\\bin;" . $PATH
+"let $PATH = "D:\\Programas\\Git\\usr\\bin;" . $PATH
 
 let g:NERDTreeIgnore = ['^node_modules$']
 "let g:airline_theme='onedark'
@@ -164,21 +164,21 @@ let g:closetag_shortcut = '>'
 
 
 let $BAT_THEME='gruvbox'
-"colorscheme dracula
+colorscheme dracula
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set background=dark
-colorscheme codedark
+"colorscheme codedark
+"highlight Normal ctermfg=grey ctermbg=black
 "let g:solarized_termcolors=256
 "colorscheme solarized
 "let g:gruvbox_contrast_dark = 'hard'
 "colorscheme gruvbox
-"set background=dark
+set background=dark
  "colorscheme spacemacs-theme
 "colorscheme monokai_pro
 "colorscheme onedark
 "colorscheme palenight
-
+hi Normal guibg=NONE ctermbg=NONE
 hi! link Pmenu DraculaBgDark
 
 let mapleader=" "
@@ -279,7 +279,7 @@ nnoremap <leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
 
 
 
-
+let g:coc_node_path = '/home/tono/.nvm/versions/node/v17.1.0/bin/node'
 
 let g:coc_disable_transparent_cursor = 1
 
@@ -455,8 +455,6 @@ syntax enable
 if exists("g:loaded_webdevicons")
 	call webdevicons#refresh()
 endif
-hi CocUnderline  gui=undercurl term=none 
-hi CocErrorHighlight gui=undercurl term=undercurl
+hi CocUnderline  gui=undercurl term=undercurl 
+hi CocErrorHighlight guisp=red gui=undercurl term=undercurl
 hi CocWarningHighlight guisp=orange gui=undercurl term=undercurl
-
-
