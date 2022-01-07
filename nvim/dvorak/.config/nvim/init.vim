@@ -87,6 +87,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdcommenter'
 Plug 'nvim-lua/plenary.nvim' 
 Plug 'ThePrimeagen/harpoon'
+Plug 'yuttie/comfortable-motion.vim'
+Plug 'tribela/vim-transparent'
 
 " Temas
 Plug 'morhetz/gruvbox'
@@ -99,6 +101,10 @@ Plug 'https://github.com/joshdick/onedark.vim.git'
 Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
+let g:comfortable_motion_friction = 200.0
+let g:comfortable_motion_air_drag = 6
+nnoremap <silent> <C-d> :call comfortable_motion#flick(160)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(-160)<C>
 
 "let g:NERDTreeDirArrowExpandable = '▸'
 "let g:NERDTreeDirArrowCollapsible = '▾'
@@ -263,7 +269,7 @@ nnoremap <leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
 nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
+nmap <C-m> :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
 nnoremap <leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>

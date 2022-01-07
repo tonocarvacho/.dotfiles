@@ -65,7 +65,6 @@ import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
-import Colors.Dracula
 
 myFont :: String
 myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
@@ -86,28 +85,28 @@ myBorderWidth :: Dimension
 myBorderWidth = 0           -- Sets border width for windows
 
 myNormColor :: String
-myNormColor   = none -- Border color of normal windows
+myNormColor   = "none"   -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor  = none  -- Border color of focused windows
+myFocusColor  = "none"   -- Border color of focused windows
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 myStartupHook :: X ()
 myStartupHook = do
-    --spawnOnce "lxsession &"
-    --spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence"
-    --spawnOnce "nm-applet &"
-    --spawnOnce "volumeicon &"
-    --spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
-    --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
-    --spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
-    --spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
+    spawnOnce "lxsession &"
+    spawnOnce "picom &"
+    spawnOnce "nm-applet &"
+    spawnOnce "volumeicon &"
+    spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
+    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
+    spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
+    spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
 
     -- spawnOnce "~/.fehbg &"  -- setlast saved feh wallpaper
     -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
-     spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
+    -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
@@ -203,7 +202,7 @@ tall     = renamed [Replace "tall"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing' 8
+           $ mySpacing 8
            $ ResizableTall 1 (3/100) (1/2) []
 magnify  = renamed [Replace "magnify"]
            $ smartBorders
@@ -212,7 +211,7 @@ magnify  = renamed [Replace "magnify"]
            $ subLayout [] (smartBorders Simplest)
            $ magnifier
            $ limitWindows 12
-           $ mySpacing' 8
+           $ mySpacing 8
            $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
@@ -229,7 +228,7 @@ grid     = renamed [Replace "grid"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing' 8
+           $ mySpacing 8
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
 spirals  = renamed [Replace "spirals"]
@@ -285,15 +284,15 @@ myTabTheme = def { fontName            = myFont
     --}
 
 -- The layout hook
-myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts noBorders tall
+myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
-               myDefaultLayout =     noBorders grid
+               myDefaultLayout =     withBorder myBorderWidth tall
                                  ||| magnify
                                  ||| noBorders monocle
-                                 ||| noBorders floats
+                                 ||| floats
                                  ||| noBorders tabs
-                                 ||| noBorders tall
+                                 ||| grid
                                  ||| spirals
                                  ||| threeCol
                                  ||| threeRow
@@ -339,15 +338,15 @@ myKeys :: [(String, X ())]
 myKeys =
     -- KB_GROUP Xmonad
         [ ("M-C-r", spawn "xmonad --recompile")       -- Recompiles xmonad
-        , ("M-r", spawn "xmonad --restart")         -- Restarts xmonad
+        , ("M-S-r", spawn "xmonad --restart")         -- Restarts xmonad
         , ("M-S-q", io exitSuccess)                   -- Quits xmonad
 
     -- KB_GROUP Get Help
-        --, ("M-z", spawn "~/.xmonad/xmonad_keys.sh") -- Get list of keybindings
+        , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh") -- Get list of keybindings
         , ("M-/", spawn "dtos-help")                  -- DTOS help/tutorial videos
 
     -- KB_GROUP Run Prompt
-        , ("M-d", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
+        , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
 
     -- KB_GROUP Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
@@ -371,13 +370,11 @@ myKeys =
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
         , ("M-b", spawn (myBrowser))
-        , ("M-m", spawn (myTerminal ++ " -e ./aaa.sh rokket") )
-        , ("M-w", spawn (myTerminal ++ " -e ./aaa.sh .dotfiles") )
+        , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
 
-      
     -- KB_GROUP Kill windows
-        , ("M-c", kill1)     -- Kill the currently focused client
-        , ("M-q", killAll)   -- Kill all windows on current workspace
+        , ("M-S-c", kill1)     -- Kill the currently focused client
+        , ("M-S-a", killAll)   -- Kill all windows on current workspace
 
     -- KB_GROUP Workspaces
         , ("M-.", nextScreen)  -- Switch focus to next monitor
@@ -387,25 +384,25 @@ myKeys =
 
     -- KB_GROUP Floating windows
         , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
-        --, ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile
-        --, ("M-S-t", sinkAll)                       -- Push ALL floating windows to tile
+        , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile
+        , ("M-S-t", sinkAll)                       -- Push ALL floating windows to tile
 
     -- KB_GROUP Increase/decrease spacing (gaps)
-        , ("C-g-j", decWindowSpacing 4)         -- Decrease window spacing
-        , ("C-g-k", incWindowSpacing 4)         -- Increase window spacing
-        , ("C-g-h", decScreenSpacing 4)         -- Decrease screen spacing
-        , ("C-g-l", incScreenSpacing 4)         -- Increase screen spacing
+        , ("C-M1-j", decWindowSpacing 4)         -- Decrease window spacing
+        , ("C-M1-k", incWindowSpacing 4)         -- Increase window spacing
+        , ("C-M1-h", decScreenSpacing 4)         -- Decrease screen spacing
+        , ("C-M1-l", incScreenSpacing 4)         -- Increase screen spacing
 
     -- KB_GROUP Grid Select (CTR-g followed by a key)
-        --, ("C-g g", spawnSelected' myAppGrid)                 -- grid select favorite apps
-        --, ("C-g t", goToSelected $ mygridConfig myColorizer)  -- goto selected window
-        --, ("C-g b", bringSelected $ mygridConfig myColorizer) -- bring selected window
+        , ("C-g g", spawnSelected' myAppGrid)                 -- grid select favorite apps
+        , ("C-g t", goToSelected $ mygridConfig myColorizer)  -- goto selected window
+        , ("C-g b", bringSelected $ mygridConfig myColorizer) -- bring selected window
 
     -- KB_GROUP Windows navigation
-        , ("M-t", windows W.focusMaster)  -- Move focus to the master window
-        , ("M-n", windows W.focusDown)    -- Move focus to the next window
-        , ("M-h", windows W.focusUp)      -- Move focus to the prev window
-        , ("M-S-t", windows W.swapMaster) -- Swap the focused window and the master window
+        , ("M-m", windows W.focusMaster)  -- Move focus to the master window
+        , ("M-j", windows W.focusDown)    -- Move focus to the next window
+        , ("M-k", windows W.focusUp)      -- Move focus to the prev window
+        , ("M-S-m", windows W.swapMaster) -- Swap the focused window and the master window
         , ("M-S-j", windows W.swapDown)   -- Swap focused window with next window
         , ("M-S-k", windows W.swapUp)     -- Swap focused window with prev window
         , ("M-<Backspace>", promote)      -- Moves focused window to master, others maintain order
@@ -414,7 +411,7 @@ myKeys =
 
     -- KB_GROUP Layouts
         , ("M-<Tab>", sendMessage NextLayout)           -- Switch to next layout
-        , ("M-g", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+        , ("M-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
 
     -- KB_GROUP Increase/decrease windows in the master pane or the stack
         , ("M-S-<Up>", sendMessage (IncMasterN 1))      -- Increase # of clients master pane
@@ -423,8 +420,8 @@ myKeys =
         , ("M-C-<Down>", decreaseLimit)                 -- Decrease # of windows
 
     -- KB_GROUP Window resizing
-        , ("M-k", sendMessage Shrink)                   -- Shrink horiz window width
-        , ("M-j", sendMessage Expand)                   -- Expand horiz window width
+        , ("M-h", sendMessage Shrink)                   -- Shrink horiz window width
+        , ("M-l", sendMessage Expand)                   -- Expand horiz window width
         , ("M-M1-j", sendMessage MirrorShrink)          -- Shrink vert window width
         , ("M-M1-k", sendMessage MirrorExpand)          -- Expand vert window width
 
