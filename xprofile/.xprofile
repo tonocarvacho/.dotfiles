@@ -6,7 +6,6 @@ nitrogen --restore &
 
 # Compositor
 # picom --experimental-backends --backend glx -b
-picom -b &
 
 # Xmobar
 # xmobar ~/.config/xmobar/.xmobarrc

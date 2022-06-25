@@ -65,7 +65,7 @@ noremap <C-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
 inoremap <C-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
 inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
 Plug 'vim-airline/vim-airline'
@@ -285,7 +285,7 @@ nnoremap <leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
 
 
 
-let g:coc_node_path = '/home/tono/.nvm/versions/node/v17.1.0/bin/node'
+let g:coc_node_path = '/home/tono/.nvm/versions/node/v18.4.0/bin/node'
 
 let g:coc_disable_transparent_cursor = 1
 
