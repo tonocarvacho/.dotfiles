@@ -57,6 +57,8 @@ set vimhelp
 
 set norunexec
 
+set shellcmdflag=-ic
+
 " List of color schemes to try (picks the first one supported by the terminal)
 
 colorscheme Default-256 Default
@@ -405,6 +407,7 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 
 " Start shell in current directory
 nnoremap s :shell<cr>
+"nnoremap s :execute 'cd' "'".term("dir=$(zsh); echo $dir")."'"<cr>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
@@ -447,7 +450,7 @@ nnoremap cc cw<c-u>
 nnoremap A cw
 
 " Open console in current directory
-nnoremap ,t :!xterm &<cr>
+nnoremap ,t :!kitty &<cr>
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
