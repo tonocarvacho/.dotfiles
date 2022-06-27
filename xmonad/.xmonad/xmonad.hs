@@ -69,7 +69,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_b), spawn "google-chrome-stable")
 
     -- launch kitty
-    , ((modm, xK_t), spawn "kitty")
+    -- , ((modm, xK_t), spawn "kitty")
+
+    -- launch terminal in directory
+    , ((modm, xK_m), spawn "kitty -e ~/.xmonad/.startup.sh ~/.dotfiles")
+    , ((modm, xK_w), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl")
+    , ((modm, xK_v), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/api")
+    , ((modm, xK_z), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/web")
 
     -- close focused window
     , ((modm, xK_c), kill)
@@ -81,7 +87,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
-    , ((modm, xK_n), refresh)
+    -- , ((modm, xK_n), refresh)
 
     -- Move focus to the next window
     , ((modm, xK_Tab), windows W.focusDown)
@@ -96,7 +102,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_m), windows W.focusMaster)
 
     -- Swap the focused window and the master window
-    , ((modm, xK_m), windows W.swapMaster)
+    , ((modm, xK_a), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j), windows W.swapDown)
@@ -105,7 +111,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_k), windows W.swapUp)
 
     -- Shrink the master area
-    , ((modm, xK_h), sendMessage Shrink)
+    , ((modm, xK_r), sendMessage Shrink)
 
     -- Expand the master area
     , ((modm, xK_l), sendMessage Expand)
@@ -141,7 +147,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_h, xK_t, xK_n, xK_s, xK_4, xK_5, xK_6, xK_1, xK_2]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 

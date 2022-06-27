@@ -175,7 +175,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "colorscheme codedark
 "highlight Normal ctermfg=grey ctermbg=black
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 "colorscheme solarized
 "let g:gruvbox_contrast_dark = 'hard'
 "colorscheme gruvbox
@@ -269,7 +269,7 @@ nnoremap <leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
 nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<CR>
-nmap <C-m> :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
 nnoremap <leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
@@ -415,8 +415,8 @@ endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
