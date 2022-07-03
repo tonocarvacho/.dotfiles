@@ -10,6 +10,8 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import XMonad.Layout.Spacing
+import XMonad.Layout.NoBorders
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -51,8 +53,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#2697ad"
-myFocusedBorderColor = "#a82592"
+myNormalBorderColor  = "#6272a4"
+myFocusedBorderColor = "#ff79c6"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -66,22 +68,31 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_p), spawn "dmenu_run")
 
     -- launch google-chrome
-    , ((modm, xK_b), spawn "google-chrome-stable")
 
     -- launch kitty
     -- , ((modm, xK_t), spawn "kitty")
 
-    -- launch terminal in directory
-    , ((modm, xK_m), spawn "kitty -e ~/.xmonad/.startup.sh ~/.dotfiles")
-    , ((modm, xK_w), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl")
-    , ((modm, xK_v), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/api")
-    , ((modm, xK_z), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/web")
-
+    -- launch terminal in directory & apps
+          , ((modm, xK_0), spawn "google-chrome-stable --app='https://keep.google.com'")
+          , ((modm, xK_1), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/web")
+          , ((modm, xK_2), spawn "slack")
+          , ((modm, xK_3), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
+          , ((modm, xK_4), spawn "kitty -e ~/.xmonad/.startup.sh ~/.dotfiles nvim")
+          , ((modm, xK_5), spawn "google-chrome-stable")
+          , ((modm, xK_6), spawn "google-chrome-stable --app='https://music.youtube.com'")
+          , ((modm, xK_7), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/api")
+          , ((modm, xK_8), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl")
+          , ((modm, xK_9), spawn "google-chrome-stable --app='https://mail.google.com/mail/u/1/#inbox'")
+          , ((modm, xK_u), spawn "google-chrome-stable --app='https://calendar.google.com/calendar/u/1/r?pli=1'")
+          , ((modm, xK_e), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
+          , ((modm, xK_o), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
+          , ((modm, xK_a), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
+          , ((modm, xK_i), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
     -- close focused window
-    , ((modm, xK_c), kill)
+      , ((modm, xK_c), kill)
 
      -- Rotate through the available layout algorithms
-    , ((modm .|. shiftMask, xK_space ), sendMessage NextLayout)
+      , ((modm, xK_l ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
     -- , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -93,16 +104,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_Tab), windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm, xK_j), windows W.focusDown)
+    , ((modm, xK_r), windows W.focusDown)
 
     -- Move focus to the previous window
-    , ((modm, xK_k), windows W.focusUp)
+    , ((modm .|. shiftMask, xK_r), windows W.focusUp)
 
     -- Move focus to the master window
-    , ((modm .|. shiftMask, xK_m), windows W.focusMaster)
+    , ((modm, xK_g), windows W.focusMaster)
 
     -- Swap the focused window and the master window
-    , ((modm, xK_a), windows W.swapMaster)
+    , ((modm, xK_f), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j), windows W.swapDown)
@@ -111,10 +122,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_k), windows W.swapUp)
 
     -- Shrink the master area
-    , ((modm, xK_r), sendMessage Shrink)
+    , ((modm, xK_j), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm, xK_l), sendMessage Expand)
+    , ((modm, xK_k), sendMessage Expand)
 
     -- Push window back into tiling
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink)
@@ -147,7 +158,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_h, xK_t, xK_n, xK_s, xK_4, xK_5, xK_6, xK_1, xK_2]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_h, xK_t, xK_n, xK_s, xK_m, xK_w, xK_v, xK_z, xK_d]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 
@@ -156,7 +167,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        | (key, sc) <- zip [xK_o, xK_x, xK_y] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
@@ -190,7 +201,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+-- myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = smartBorders (tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -252,7 +264,10 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+
+myStartupHook :: X ()
+myStartupHook = do
+   spawn "kitty -e ~/.xmonad/scripts/.startup.sh"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -283,7 +298,7 @@ defaults = def {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = myLayout,
+        layoutHook         = spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True $ myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,

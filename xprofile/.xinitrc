@@ -8,6 +8,7 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+#feh --bg-fill --randomize ~/.wallpaper/*
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
@@ -35,12 +36,13 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-#setxkbmap -model pc105 -layout us,us -variant dvorak, -option grp: win_space_toggle
-nitrogen --restore &
+setxkbmap -model pc105 -layout us,us -variant dvorak, -option grp: win_space_toggle
 picom --experimental-backends --backend glx -b &
 #xmobar ~/.config/xmobar/.xmobarrc
+#nitrogen --restore &
 
 # key repeat speed
 xset r rate 300 50 &
+
 
 exec xmonad

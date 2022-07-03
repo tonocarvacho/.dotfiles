@@ -8,7 +8,7 @@ set number				                      " Line numbers
 set relativenumber
 set mouse=a				                      " Enable your mouse
 set numberwidth=2
-set clipboard=unnamedplus 		          " Copy paste between vim and everything else
+set clipboard+=unnamedplus 		          " Copy paste between vim and everything else
 set showcmd
 set ruler
 set encoding=utf-8
@@ -55,10 +55,10 @@ set signcolumn=yes:1
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:netrw_banner = 0
 " font size
-let s:fontsize = 13
+let s:fontsize = 11
 function! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
-  :execute "GuiFont! Consolas:h" . s:fontsize
+  :execute "JetBrains Mono Regular" . s:fontsize
 endfunction
 noremap <C-ScrollWheelUp> :call AdjustFontSize(1)<CR>
 noremap <C-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
@@ -89,6 +89,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tribela/vim-transparent'
+Plug 'APZelos/blamer.nvim'
 
 " Temas
 Plug 'morhetz/gruvbox'
@@ -101,6 +102,13 @@ Plug 'https://github.com/joshdick/onedark.vim.git'
 Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
+
+" Blamer
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
+let g:blamer_relative_time = 1
+
+" Smooth scroll
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 6
 nnoremap <silent> <C-d> :call comfortable_motion#flick(160)<CR>
@@ -165,22 +173,21 @@ let g:closetag_regions = {
     \ }
 
 " Shortcut for closing tags, default is '>'
-"
 let g:closetag_shortcut = '>'
 
 
-let $BAT_THEME='gruvbox'
-colorscheme dracula
+let $BAT_THEME='dracula'
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"colorscheme codedark
 "highlight Normal ctermfg=grey ctermbg=black
 let g:solarized_termcolors=256
-"colorscheme solarized
 "let g:gruvbox_contrast_dark = 'hard'
-"colorscheme gruvbox
 set background=dark
- "colorscheme spacemacs-theme
+colorscheme dracula
+"colorscheme codedark
+"colorscheme gruvbox
+"colorscheme solarized
+"colorscheme spacemacs-theme
 "colorscheme monokai_pro
 "colorscheme onedark
 "colorscheme palenight
@@ -189,7 +196,7 @@ hi! link Pmenu DraculaBgDark
 
 let mapleader=" "
 
-nnoremap <leader>eu :NERDTreeToggle<CR>
+nnoremap <leader>u :NERDTreeToggle<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
 
 nmap oo m`o<Esc>
@@ -213,20 +220,20 @@ map <C-K> <C-W>k
 map <C-L> <C-W>l
 map <C-H> <C-W>h
 
-"nmap <Leader>w :CocCommand prettier.formatFile<CR>:w<CR>
+nmap <Leader>t :CocCommand prettier.formatFile<CR>:w<CR>
 nmap <Leader>q :w<CR>:bd<CR>
-nmap <Leader>b :bd!<CR>
-nmap <Leader>t <C-^>
+nmap <Leader>c :bd!<CR>
+"nmap <Leader>t <C-^>
 nmap <Leader>n :bn<CR>
 nmap <Leader>h :bn<CR>
 nmap <Leader>r :wincmd h<CR>
 nmap <Leader>l :wincmd l<CR>
 
 " registers
-nmap <Leader>c :let @a=@*<CR>
+nmap <Leader>b :let @a=@*<CR>
 "nmap <Leader>p "ap<CR>
 nmap <Leader>P "aP<CR>
-xnoremap p "_dP
+"xnoremap p "_dP
 
 " greatest remap ever
 xnoremap <leader>p "_dP
@@ -242,7 +249,7 @@ vnoremap <leader>d "_d
 " terminal
 nmap <Leader>te :term<CR>
 
-" run codes
+ "run codes
 nmap <Leader>rj :w !node<CR>
 nmap <Leader>rp :w !python<CR>
 
@@ -254,13 +261,14 @@ nmap <Leader>. :w<CR>:source ~/.config/nvim/init.vim<CR>
 "nmap <Leader>f :Files<CR>
 "fzf ignore files
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+nmap <C-y> :Rg<CR>
 
 " close terminal
 tnoremap <Esc> <C-\><C-n>
 
 " comments
-nmap <C-_> <plug>NERDCommenterToggle
-xmap <C-_> <plug>NERDCommenterToggle
+nmap <C-l> <plug>NERDCommenterToggle
+xmap <C-l> <plug>NERDCommenterToggle
 
 " Harpoon
 nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
@@ -347,12 +355,13 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <C-k> :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -426,6 +435,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
