@@ -1,43 +1,18 @@
--- Xmobar (http://projects.haskell.org/xmobar/)
--- This is one of the xmobar configurations for DTOS.
--- This config is packaged in the DTOS repo as 'dtos-xmobar'
--- Color scheme: Dracula
--- Dependencies: 
-   -- otf-font-awesome 
-   -- ttf-mononoki 
-   -- ttf-ubuntu-font-family
-   -- htop
-   -- emacs
-   -- pacman (Arch Linux)
-   -- trayer
-   -- 'dtos-local-bin' (from dtos-core-repo)
-
-Config { font            = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
-       , additionalFonts = [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
-                           , "xft:Font Awesome 5 Free Solid:pixelsize=12"
-                           , "xft:Font Awesome 5 Brands:pixelsize=12"
-                           ]
-       , bgColor      = "#000"
-       , fgColor      = "#f8f8f2"
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , additionalFonts = []
+       , bgColor = "black"
+       , fgColor = "#f8f8f2"
        , alpha = 150
-       -- Position TopSize and BottomSize take 3 arguments:
-       --   an alignment parameter (L/R/C) for Left, Right or Center.
-       --   an integer for the percentage width, so 100 would be 100%.
-       --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
-       --   NOTE: The height should be the same as the trayer (system tray) height.
-    , position       = BottomSize L 100 24
+       , position = BottomSize L 100 24
        , lowerOnStart = True
-       , hideOnStart  = False
-       , allDesktops  = True
-       , persistent   = True
-       , iconRoot     = ".xmonad/xpm/"  -- default: "."
-       , commands = [
-                       -- Time and date
-                     Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
-                        -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
-                    -- , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
-                        -- Prints out the left side items such as workspaces, layout, etc.
-                    , Run UnsafeStdinReader
+       , pickBroadest = False
+       , persistent = True
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , commands = [                      
+                    Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
+                    , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
                     ]
        , sepChar = "%"
        , alignSep = "}{"

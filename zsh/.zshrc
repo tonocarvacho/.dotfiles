@@ -42,4 +42,7 @@ bindkey '^h' _nvim
 #zle -N vifm
 #bindkey '^t' vifm
 # ~/.zshrc
+
+#colorscript random
+
 eval "$(starship init zsh)"

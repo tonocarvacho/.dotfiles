@@ -90,6 +90,7 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tribela/vim-transparent'
 Plug 'APZelos/blamer.nvim'
+Plug 'voldikss/vim-floaterm'
 
 " Temas
 Plug 'morhetz/gruvbox'
@@ -225,7 +226,7 @@ nmap <Leader>q :w<CR>:bd<CR>
 nmap <Leader>c :bd!<CR>
 "nmap <Leader>t <C-^>
 nmap <Leader>n :bn<CR>
-nmap <Leader>h :bn<CR>
+nmap <Leader>h <C-^>
 nmap <Leader>r :wincmd h<CR>
 nmap <Leader>l :wincmd l<CR>
 

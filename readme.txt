@@ -13,6 +13,12 @@
     - check shells: chsh -l
     - set default: chsh -s /usr/bin/zsh
 - install ly (make, service, make xinitrc executable)
+- install yay
+- install colorscript 
+
+
+
+
 
 
 ### Vim shorts ###
