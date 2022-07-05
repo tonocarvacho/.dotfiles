@@ -221,14 +221,15 @@ map <C-K> <C-W>k
 map <C-L> <C-W>l
 map <C-H> <C-W>h
 
-nmap <Leader>t :CocCommand prettier.formatFile<CR>:w<CR>
+nmap <Leader>t :CocCommand prettier.formatFile<CR>
+"nmap <Leader>t :CocCommand prettier.formatFile<CR>:w<CR>
 nmap <Leader>q :w<CR>:bd<CR>
 nmap <Leader>c :bd!<CR>
 "nmap <Leader>t <C-^>
 nmap <Leader>n :bn<CR>
 nmap <Leader>h <C-^>
-nmap <Leader>r :wincmd h<CR>
-nmap <Leader>l :wincmd l<CR>
+nmap <Leader>r :FloatermNew vifm<CR>
+nmap <Leader>l :ls<CR>
 
 " registers
 nmap <Leader>b :let @a=@*<CR>
