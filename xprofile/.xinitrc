@@ -42,7 +42,7 @@ xmobar ~/.config/xmobar/.xmobarrc &
 #nitrogen --restore &
 
 # key repeat speed
-xset r rate 300 50 &
+xset r rate 200 90 &
 
 
 exec xmonad

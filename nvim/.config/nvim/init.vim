@@ -1,5 +1,5 @@
 filetype plugin on
-syntax on
+"syntax on
 set guicursor=n-v-c:block-Cursor
 set guicursor =i:blinkwait5-blinkon500-blinkoff500
 set hidden
@@ -24,7 +24,7 @@ set smarttab                            " Makes tabbing smarter will realize you
 set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
-set cursorline                          " Enable highlighting of the current line
+"set cursorline                          " Enable highlighting of the current line
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
@@ -37,9 +37,9 @@ set noswapfile
 set incsearch
 set path+=**                            " Provides tab-completion for all file-related task, Search down into subfolders
 set wildmenu                            " Display all matching files when we tab complete
-set nohlsearch
+"set nohlsearch
 set scrolloff=8
-set guifont=Consolas:h13
+set guifont=Consolas:h10
 " LSP
 set cot=menuone,noinsert,noselect
 let g:completion_confirm_key = "\<C-y>"
@@ -55,7 +55,7 @@ set signcolumn=yes:1
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:netrw_banner = 0
 " font size
-let s:fontsize = 11
+let s:fontsize = 10
 function! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
   :execute "JetBrains Mono Regular" . s:fontsize
@@ -68,39 +68,41 @@ inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
 call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
-Plug 'sheerun/vim-polyglot'
-Plug 'ThePrimeagen/vim-be-good'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'alvan/vim-closetag'
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
+Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'preservim/nerdcommenter'
+Plug 'APZelos/blamer.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim' 
 Plug 'ThePrimeagen/harpoon'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tribela/vim-transparent'
-Plug 'APZelos/blamer.nvim'
 Plug 'voldikss/vim-floaterm'
+Plug 'p00f/nvim-ts-rainbow'
+Plug 'ThePrimeagen/vim-be-good'
 
-" Temas
-Plug 'morhetz/gruvbox'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+" Themes
 Plug 'dracula/vim', { 'name': 'dracula' }
-Plug 'phanviet/vim-monokai-pro'
-Plug 'colepeters/spacemacs-theme.vim'
-Plug 'https://github.com/joshdick/onedark.vim.git'
 Plug 'tomasiser/vim-code-dark'
+"Plug 'phanviet/vim-monokai-pro'
+"Plug 'morhetz/gruvbox'
+"Plug 'drewtempelmeyer/palenight.vim'
+"Plug 'sonph/onehalf', { 'rtp': 'vim' }
+"Plug 'colepeters/spacemacs-theme.vim'
+"Plug 'https://github.com/joshdick/onedark.vim.git'
 
 call plug#end()
 
@@ -177,7 +179,7 @@ let g:closetag_regions = {
 let g:closetag_shortcut = '>'
 
 
-let $BAT_THEME='dracula'
+"let $BAT_THEME='dracula'
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "highlight Normal ctermfg=grey ctermbg=black
@@ -229,9 +231,9 @@ nmap <Leader>c :bd!<CR>
 nmap <Leader>n :bn<CR>
 nmap <Leader>h <C-^>
 nmap <Leader>r :FloatermNew vifm<CR>
-nmap <Leader>l :ls<CR>
 
 " registers
+nmap <Leader>s :noh<cr>
 nmap <Leader>b :let @a=@*<CR>
 "nmap <Leader>p "ap<CR>
 nmap <Leader>P "aP<CR>
@@ -259,11 +261,21 @@ nmap <Leader>rp :w !python<CR>
 nmap <Leader>, :e ~/.config/nvim/init.vim<CR>
 nmap <Leader>. :w<CR>:source ~/.config/nvim/init.vim<CR>
 
-" FZF
-"nmap <Leader>f :Files<CR>
-"fzf ignore files
-nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
-nmap <C-y> :Rg<CR>
+" ======== TELESCOPE =========
+nnoremap <C-p> :Telescope git_files use_git_root=false<CR>
+nnoremap <C-P> :Telescope find_files 
+nmap <C-y> :Telescope live_grep hidden=true<CR>
+nmap <Leader>l :Telescope buffers<CR>
+nnoremap gy :Telescope references<CR>
+nnoremap gC :Telescope git_status<CR>
+nnoremap gl :Telescope git_branches<CR>
+nnoremap gs :Telescope git_bcommits<CR>
+nnoremap gp :Telescope git_commits<CR>
+" ===========================
+
+" ======== FUGITIVE =========
+nnoremap gc :G<CR>
+" ===========================
 
 " close terminal
 tnoremap <Esc> <C-\><C-n>
@@ -284,7 +296,6 @@ nnoremap <leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
 nnoremap <leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
 nnoremap <leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
-
 
 
 
@@ -457,7 +468,7 @@ nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 
 
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+"nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 "nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -470,10 +481,35 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 
 let NERDTreeMinimalUI=1
 "get rid of [  ] around icons in NerdTree
-syntax enable
+"syntax enable
 if exists("g:loaded_webdevicons")
 	call webdevicons#refresh()
 endif
-hi CocUnderline  gui=undercurl term=undercurl 
+hi CocUnderline guisp=orange gui=undercurl term=undercurl 
 hi CocErrorHighlight guisp=red gui=undercurl term=undercurl
 hi CocWarningHighlight guisp=orange gui=undercurl term=undercurl
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    additional_vim_regex_highlighting = false,
+  },
+  rainbow = {
+    enable = true,
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    colors = {
+      "#bd93f9",
+      "#8be9fd",
+  --    "#ffb86c",
+   --   "#f1fa8c",
+    --  "#ff79c6",
+     -- "#50fa7b"
+      }, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  }
+}
+EOF

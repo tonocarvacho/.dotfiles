@@ -16,6 +16,11 @@ import XMonad.Layout.NoBorders
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+    -- Hooks
+import Graphics.X11.ExtraTypes.XF86
+import XMonad.Hooks.DynamicLog
+
+import Colors.Dracula
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -49,7 +54,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["dev","www","music","keep","term","slack","meet","mail","calendar"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -271,11 +276,36 @@ myStartupHook = do
    spawn "kitty -e ~/.xmonad/scripts/.startup.sh"
 
 ------------------------------------------------------------------------
+-- Command to launch the bar.
+myBar = "xmobar"
+
+-- Custom PP, configure it as you like. It determines what is being written to the bar.
+myPP = xmobarPP { 
+ ppCurrent = xmobarColor color06 "" . wrap
+                      ("<box type=Bottom width=1 mb=1 color=" ++ color06 ++ ">") "</box>"
+          -- Visible but not current workspace
+        , ppVisible = xmobarColor color06 "" 
+          -- Hidden workspace
+        , ppHidden = xmobarColor color05 "" 
+          -- Hidden workspaces (no windows)
+        , ppHiddenNoWindows = xmobarColor color08 ""  
+          -- Title of active window
+        , ppTitle = xmobarColor color16 "" . shorten 60
+          -- Separator character
+        , ppSep =  "<fc=" ++ color09 ++ "> <fn=1>|</fn> </fc>"
+
+        , ppOrder = \(ws:_:_:_) -> [ws]
+ }
+
+-- Key binding to toggle the gap for the bar.
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+
+------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -299,7 +329,7 @@ defaults = def {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True $ myLayout,
+        layoutHook         = spacingRaw True (Border 6 6 6 6) True (Border 6 6 6 6) True $ myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
