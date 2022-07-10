@@ -79,11 +79,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+"Plug 'lewis6991/gitsigns.nvim'
 Plug 'APZelos/blamer.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim' 
@@ -110,6 +109,13 @@ call plug#end()
 let g:blamer_enabled = 1
 let g:blamer_delay = 500
 let g:blamer_relative_time = 1
+
+let g:gitgutter_sign_added = '│'
+let g:gitgutter_sign_modified = '│'
+let g:gitgutter_sign_removed = '│'
+let g:gitgutter_sign_removed_first_line = '│'
+let g:gitgutter_sign_removed_above_and_below = '│'
+let g:gitgutter_sign_modified_removed = '│'
 
 " Smooth scroll
 let g:comfortable_motion_friction = 200.0
@@ -267,7 +273,7 @@ nnoremap <C-P> :Telescope find_files
 nmap <C-y> :Telescope live_grep hidden=true<CR>
 nmap <Leader>l :Telescope buffers<CR>
 nnoremap gy :Telescope references<CR>
-nnoremap gC :Telescope git_status<CR>
+nnoremap gu :Telescope git_status<CR>
 nnoremap gl :Telescope git_branches<CR>
 nnoremap gs :Telescope git_bcommits<CR>
 nnoremap gp :Telescope git_commits<CR>
