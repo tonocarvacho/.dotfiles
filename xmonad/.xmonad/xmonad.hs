@@ -12,6 +12,7 @@ import Data.Monoid
 import System.Exit
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
+--import XMonad.Util.ClickableWorkspaces
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -19,6 +20,7 @@ import qualified Data.Map        as M
     -- Hooks
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 
 import Colors.Dracula
 -- The preferred terminal program, which is used in a binding below and by
@@ -36,7 +38,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+myBorderWidth   = 0
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -54,13 +56,17 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["dev","www","music","keep","term","slack","meet","mail","calendar"]
-
+--myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
+--myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
+--myWorkspaces    = ["\61729","uu","aoeu","keep","term","slack","meet","mail","calendar"]
+myWorkspaces    = ["\61897","\62600","\63434", "\62026", "\62601","\61848","\62060", "\63215","\61747"]
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#6272a4"
-myFocusedBorderColor = "#ff79c6"
+myNormalBorderColor  = "#020408"
+myFocusedBorderColor = "#282a36"
 
+--myNormalBorderColor  = "#6272a4"
+--myFocusedBorderColor = "#ff79c6"
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -78,22 +84,21 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm, xK_t), spawn "kitty")
 
     -- launch terminal in directory & apps
-          , ((modm, xK_0), spawn "google-chrome-stable --app='https://keep.google.com'")
           , ((modm, xK_1), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/web")
           , ((modm, xK_2), spawn "slack")
-          , ((modm, xK_3), spawn "google-chrome-stable --app='https://meet.google.com/oez-vakt-zat?authuser=1'")
+          , ((modm, xK_3), spawn "google-chrome-stable --app='https://mail.google.com/mail/u/1/#inbox'")
           , ((modm, xK_4), spawn "kitty -e ~/.xmonad/.startup.sh ~/.dotfiles nvim")
           , ((modm, xK_5), spawn "google-chrome-stable")
-          , ((modm, xK_6), spawn "youtube-music")
-          --, ((modm, xK_6), spawn "google-chrome-stable --app='https://music.youtube.com'")
+          , ((modm, xK_6), spawn "spotify")
           , ((modm, xK_7), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/api")
           , ((modm, xK_8), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl")
-          , ((modm, xK_9), spawn "google-chrome-stable --app='https://mail.google.com/mail/u/1/#inbox'")
-          , ((modm, xK_u), spawn "google-chrome-stable --app='https://calendar.google.com/calendar/u/1/r?pli=1'")
-          , ((modm, xK_e), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
-          , ((modm, xK_o), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
-          , ((modm, xK_a), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
-          , ((modm, xK_i), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
+          , ((modm, xK_9), spawn "google-chrome-stable --app='https://keep.google.com'")
+          --, ((modm, xK_9), spawn "google-chrome-stable --app='https://meet.google.com/oez-vakt-zat?authuser=1'")
+          --, ((modm, xK_i), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
+          , ((modm, xK_u), spawn "kitty -e vifm")
+          --, ((modm, xK_e), spawn "google-chrome-stable --app='https://calendar.google.com/calendar/u/1/r?pli=1'")
+          , ((modm, xK_e), spawn "~/.config/scrot/.screenshot.sh")
+          , ((modm, xK_a), spawn "feh --bg-fill --randomize ~/.config/wallpaper/* ")
     -- close focused window
       , ((modm, xK_c), kill)
 
@@ -273,7 +278,8 @@ myLogHook = return ()
 
 myStartupHook :: X ()
 myStartupHook = do
-   spawn "kitty -e ~/.xmonad/scripts/.startup.sh"
+   --spawn "kitty -e ~/.xmonad/scripts/.startup.sh"
+   spawn "feh --bg-fill --randomize ~/.config/wallpaper/* "
 
 ------------------------------------------------------------------------
 -- Command to launch the bar.
@@ -281,16 +287,19 @@ myBar = "xmobar"
 
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
 myPP = xmobarPP { 
- ppCurrent = xmobarColor color06 "" . wrap
-                      ("<box type=Bottom width=1 mb=1 color=" ++ color06 ++ ">") "</box>"
+ ppCurrent = 
+        xmobarColor color03 "" 
+        --xmobarColor color06 "" . wrap ("<box type=Bottom width=1 mb=1 color=" ++ color06 ++ ">") "</box>"
+                      --("<box type=Bottom width=1 mb=1 color=" ++ color06 ++ ">") "</box>"
           -- Visible but not current workspace
-        , ppVisible = xmobarColor color06 "" 
+        , ppVisible = xmobarColor color03 "" 
           -- Hidden workspace
-        , ppHidden = xmobarColor color05 "" 
+        , ppHidden = xmobarColor color06 "" 
           -- Hidden workspaces (no windows)
         , ppHiddenNoWindows = xmobarColor color08 ""  
           -- Title of active window
         , ppTitle = xmobarColor color16 "" . shorten 60
+        --, ppTitle = xmobarColor color16 ""
           -- Separator character
         , ppSep =  "<fc=" ++ color09 ++ "> <fn=1>|</fn> </fc>"
 
@@ -329,7 +338,7 @@ defaults = def {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = spacingRaw True (Border 6 6 6 6) True (Border 6 6 6 6) True $ myLayout,
+        layoutHook         = spacingRaw True (Border 0 0 0 0) True (Border 0 0 0 0) True $ myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,

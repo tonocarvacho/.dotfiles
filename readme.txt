@@ -32,3 +32,7 @@ ctrl-r-" paste on command line
 # search previous 
 n next word in search
 N previous word in search
+
+Git changes
+] o [ + c
+g; o g,

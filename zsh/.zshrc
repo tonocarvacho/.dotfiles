@@ -33,14 +33,15 @@ function _nvim {
 zle -N _nvim
 bindkey '^h' _nvim
 
-#function vifm {
-    #zle push-input
-    #BUFFER='vifm'
-    #zle accept-line
-#}
+function _vifm {
+    zle push-input
+    BUFFER='vifm'
+    zle accept-line
+}
 
-#zle -N vifm
-#bindkey '^t' vifm
+zle -N _vifm
+bindkey '^u' _vifm
+
 # ~/.zshrc
 
 #colorscript random

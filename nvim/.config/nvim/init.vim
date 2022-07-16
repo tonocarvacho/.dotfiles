@@ -39,7 +39,7 @@ set path+=**                            " Provides tab-completion for all file-r
 set wildmenu                            " Display all matching files when we tab complete
 "set nohlsearch
 set scrolloff=8
-set guifont=Consolas:h10
+set guifont=Inconsolata\ LGC\ Nerd\ Font\ Complete:h11
 " LSP
 set cot=menuone,noinsert,noselect
 let g:completion_confirm_key = "\<C-y>"
@@ -55,10 +55,10 @@ set signcolumn=yes:1
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:netrw_banner = 0
 " font size
-let s:fontsize = 10
+let s:fontsize = 11
 function! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
-  :execute "JetBrains Mono Regular" . s:fontsize
+  :execute "Inconsolata LGC Nerd Font Complete:" . s:fontsize
 endfunction
 noremap <C-ScrollWheelUp> :call AdjustFontSize(1)<CR>
 noremap <C-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
@@ -117,6 +117,36 @@ let g:gitgutter_sign_removed_first_line = '│'
 let g:gitgutter_sign_removed_above_and_below = '│'
 let g:gitgutter_sign_modified_removed = '│'
 
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
 " Smooth scroll
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 6
@@ -128,6 +158,8 @@ nnoremap <silent> <C-u> :call comfortable_motion#flick(-160)<C>
 "let $PATH = "D:\\Programas\\Git\\usr\\bin;" . $PATH
 
 let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeWinSize=35
+
 "let g:airline_theme='onedark'
 " coc config
 let  g:coc_global_extensions = [
@@ -159,7 +191,8 @@ let g:closetag_xhtml_filenames = '*.xhtml,*.jsx*,*.php,*.js,*.tsx'
 " filetypes like xml, html, xhtml, ...
 " These are the file types where this plugin is enabled.
 "
-let g:closetag_filetypes = 'html,xhtml,phtml*,php*,js*'
+let g:closetag_filetypes = 'html,xhtml,phtml*,php*,js*,tsx*'
+
 
 " filetypes like xml, xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
@@ -189,7 +222,7 @@ let g:closetag_shortcut = '>'
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "highlight Normal ctermfg=grey ctermbg=black
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 "let g:gruvbox_contrast_dark = 'hard'
 set background=dark
 colorscheme dracula
@@ -201,11 +234,11 @@ colorscheme dracula
 "colorscheme onedark
 "colorscheme palenight
 hi Normal guibg=NONE ctermbg=NONE
-hi! link Pmenu DraculaBgDark
+"hi! link Pmenu DraculaBgDark
 
 let mapleader=" "
 
-nnoremap <leader>u :NERDTreeToggle<CR>
+nnoremap <leader>j :NERDTreeToggle<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
 
 nmap oo m`o<Esc>
@@ -219,42 +252,40 @@ nnoremap J mzJ`z
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
 
-" buffer navigation
-nmap <Leader>ls :ls<CR>
-nmap <Leader>w :w<CR>
-
-" Quick window navigation
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-L> <C-W>l
-map <C-H> <C-W>h
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left><C-r>"
 
 nmap <Leader>t :CocCommand prettier.formatFile<CR>
 "nmap <Leader>t :CocCommand prettier.formatFile<CR>:w<CR>
+
+nmap <Leader>w :w<CR>
 nmap <Leader>q :w<CR>:bd<CR>
 nmap <Leader>c :bd!<CR>
-"nmap <Leader>t <C-^>
 nmap <Leader>n :bn<CR>
 nmap <Leader>h <C-^>
-nmap <Leader>r :FloatermNew vifm<CR>
+nmap <Leader>u :FloatermNew vifm<CR>
+
+nmap <Leader>s :noh<cr>
 
 " registers
-nmap <Leader>s :noh<cr>
-nmap <Leader>b :let @a=@*<CR>
-"nmap <Leader>p "ap<CR>
-nmap <Leader>P "aP<CR>
-"xnoremap p "_dP
+nmap <Leader>p "-p<CR>
+nmap <Leader>P "-P<CR>
+nnoremap <leader>d "-d
+vnoremap <leader>d "-d
 
 " greatest remap ever
-xnoremap <leader>p "_dP
+"xnoremap p "_dP
+"xnoremap <leader>p "_dP
 
 " next greatest remap ever : asbjornHaland Shortcut for copying to/from System Clipboard
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nnoremap <leader>Y gg"+yG
+"nnoremap <leader>y "+y
+"vnoremap <leader>y "+y
+"nnoremap <leader>Y gg"+yG
 
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
+"nmap <Leader>p "_p<CR>
+"nmap <Leader>P "_P<CR>
+"nmap <Leader>b :let @a=@*<CR>
+"nnoremap <leader>d "_d
+"vnoremap <leader>d "_d
 
 " terminal
 nmap <Leader>te :term<CR>
@@ -269,7 +300,7 @@ nmap <Leader>. :w<CR>:source ~/.config/nvim/init.vim<CR>
 
 " ======== TELESCOPE =========
 nnoremap <C-p> :Telescope git_files use_git_root=false<CR>
-nnoremap <C-P> :Telescope find_files 
+"nnoremap <C-P> :Telescope find_files 
 nmap <C-y> :Telescope live_grep hidden=true<CR>
 nmap <Leader>l :Telescope buffers<CR>
 nnoremap gy :Telescope references<CR>
@@ -278,6 +309,7 @@ nnoremap gl :Telescope git_branches<CR>
 nnoremap gs :Telescope git_bcommits<CR>
 nnoremap gp :Telescope git_commits<CR>
 " ===========================
+
 
 " ======== FUGITIVE =========
 nnoremap gc :G<CR>
@@ -290,7 +322,8 @@ tnoremap <Esc> <C-\><C-n>
 nmap <C-l> <plug>NERDCommenterToggle
 xmap <C-l> <plug>NERDCommenterToggle
 
-" Harpoon
+" ======== Harpoon =========
+nnoremap gc :G<CR>
 nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
 nnoremap <C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
@@ -298,11 +331,12 @@ nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <leader>b :lua require("harpoon.ui").nav_file(5)<CR>
 nnoremap <leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
 nnoremap <leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
 nnoremap <leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
-
+" ===========================
 
 
 

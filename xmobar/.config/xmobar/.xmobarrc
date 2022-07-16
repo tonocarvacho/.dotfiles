@@ -1,21 +1,23 @@
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , additionalFonts = []
+Config { font = "xft:Ubuntu-B::size=9:style=bold:antialias=true"
+       , additionalFonts = ["xft:Inconsolata LGC Nerd Font Complete::size=21:antialias=true"]
        , bgColor = "black"
        , fgColor = "#caa9fa"
-       --, alpha = 200
-       , position = BottomSize L 100 16
+       , alpha = 220
+       , position = BottomSize L 100 26
+       , textOffset = 18
+       , textOffsets = [24, 24]
        , lowerOnStart = False
        , pickBroadest = False
-       , persistent = True
+       , persistent = False
        , hideOnStart = False
        , iconRoot = "."
-       , allDesktops = True
+       , allDesktops = False
        , commands = [                      
-                    Run Date "<fn=2>\xf017</fn>  %b %d %Y - %H:%M " "date" 50
+                    Run Date " %b %d %Y ∙ %H:%M " "date" 50
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
-                    , Run StdinReader
+                    , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "  %StdinReader% }{ <fc=#caa9fa>%date%</fc> "
+       , template = "}<fn=1>%UnsafeStdinReader%</fn>{ <fc=#bd93f9>%date%</fc> "
        }
