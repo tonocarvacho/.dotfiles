@@ -76,7 +76,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_Return), spawn "kitty")
 
     -- launch dmenu
-    , ((modm, xK_p), spawn "dmenu_run")
+    , ((modm, xK_n), spawn "dmenu_run")
 
     -- launch google-chrome
 
@@ -95,15 +95,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
           , ((modm, xK_9), spawn "google-chrome-stable --app='https://keep.google.com'")
           --, ((modm, xK_9), spawn "google-chrome-stable --app='https://meet.google.com/oez-vakt-zat?authuser=1'")
           --, ((modm, xK_i), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
-          , ((modm, xK_u), spawn "kitty -e vifm")
+          , ((modm, xK_f), spawn "kitty -e vifm")
           --, ((modm, xK_e), spawn "google-chrome-stable --app='https://calendar.google.com/calendar/u/1/r?pli=1'")
-          , ((modm, xK_e), spawn "~/.config/scrot/.screenshot.sh")
+          , ((modm, xK_s), spawn "~/.config/scrot/.screenshot.sh")
           , ((modm, xK_a), spawn "feh --bg-fill --randomize ~/.config/wallpaper/* ")
     -- close focused window
-      , ((modm, xK_c), kill)
+      , ((modm, xK_y), kill)
 
      -- Rotate through the available layout algorithms
-      , ((modm, xK_l ), sendMessage NextLayout)
+      , ((modm, xK_c ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
     -- , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -121,28 +121,28 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_r), windows W.focusUp)
 
     -- Move focus to the master window
-    , ((modm, xK_g), windows W.focusMaster)
+    , ((modm, xK_m), windows W.focusMaster)
 
     -- Swap the focused window and the master window
-    , ((modm, xK_f), windows W.swapMaster)
+    , ((modm, xK_comma), windows W.swapMaster)
 
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j), windows W.swapDown)
+    , ((modm .|. shiftMask, xK_braceleft), windows W.swapDown)
 
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k), windows W.swapUp)
+    , ((modm .|. shiftMask, xK_braceright), windows W.swapUp)
 
     -- Shrink the master area
-    , ((modm, xK_j), sendMessage Shrink)
+    , ((modm, xK_bracketright), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm, xK_k), sendMessage Expand)
+    , ((modm, xK_bracketleft), sendMessage Expand)
 
     -- Push window back into tiling
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    , ((modm, xK_comma ), sendMessage (IncMasterN 1))
+    , ((modm, xK_quotedbl ), sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
     , ((modm, xK_period), sendMessage (IncMasterN (-1)))
@@ -154,10 +154,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm, xK_b), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess))
+    , ((modm .|. shiftMask, xK_z), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm, xK_z), spawn "xmonad --recompile; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -169,7 +169,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_h, xK_t, xK_n, xK_s, xK_m, xK_w, xK_v, xK_z, xK_d]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_j, xK_k, xK_l, xK_semicolon, xK_u, xK_i, xK_o, xK_p, xK_h]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 
@@ -178,7 +178,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_o, xK_x, xK_y] [0..]
+        | (key, sc) <- zip [xK_percent, xK_ampersand, xK_apostrophe] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
