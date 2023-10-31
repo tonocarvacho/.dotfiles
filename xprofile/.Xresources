@@ -1,0 +1,4 @@
+URxvt.font:                xft:Ubuntu-R:pixelsize=16
+URxvt.boldFont:            xft:Ubuntu-B:pixelsize=16:bold
+URxvt.italicFont:          xft:Ubuntu-I:pixelsize=16:italic
+URxvt.boldItalicFont:      xft:Ubuntu-R:pixelsize=16:bold:italic

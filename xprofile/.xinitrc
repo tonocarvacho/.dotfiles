@@ -2,7 +2,7 @@
 
 # [ -f /etc/xprofile ] && . /etc/xprofile
 # [ -f ~/.xprofile ] && . ~/.xprofile
-
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -36,13 +36,13 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-Section "Files"
-    FontPath "/usr/share/fonts/nerd-fonts-complete/"
-EndSection
+#Section "Files"
+    #FontPath "/usr/share/fonts/nerd-fonts-complete/"
+#EndSection
 
 #setxkbmap -model pc105 -layout us,us -variant dvorak, -option grp: win_space_toggle
 picom --experimental-backends --backend glx -b &
-xmobar ~/.config/xmobar/.xmobarrc &
+#xmobar ~/.config/xmobar/.xmobarrc &
 #nitrogen --restore &
 
 # key repeat speed

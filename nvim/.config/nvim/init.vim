@@ -253,6 +253,7 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
 
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left><C-r>"
+vnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left><C-r>"
 
 nmap <Leader>t :CocCommand prettier.formatFile<CR>
 "nmap <Leader>t :CocCommand prettier.formatFile<CR>:w<CR>
@@ -273,7 +274,7 @@ nnoremap <leader>d "-d
 vnoremap <leader>d "-d
 
 " greatest remap ever
-"xnoremap p "_dP
+xnoremap p "_dP
 "xnoremap <leader>p "_dP
 
 " next greatest remap ever : asbjornHaland Shortcut for copying to/from System Clipboard
