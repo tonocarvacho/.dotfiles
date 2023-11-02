@@ -263,7 +263,7 @@ nmap <Leader>q :w<CR>:bd<CR>
 nmap <Leader>c :bd!<CR>
 nmap <Leader>n :bn<CR>
 nmap <Leader>h <C-^>
-nmap <Leader>u :FloatermNew vifm<CR>
+nmap <Leader>f :FloatermNew vifm<CR>
 
 nmap <Leader>s :noh<cr>
 
@@ -320,19 +320,19 @@ nnoremap gc :G<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " comments
-nmap <C-l> <plug>NERDCommenterToggle
-xmap <C-l> <plug>NERDCommenterToggle
+nmap <C-/> <plug>NERDCommenterToggle
+xmap <C-/> <plug>NERDCommenterToggle
 
 " ======== Harpoon =========
 nnoremap gc :G<CR>
 nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
 nnoremap <C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
-nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>
-nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<CR>
-nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
-nnoremap <leader>b :lua require("harpoon.ui").nav_file(5)<CR>
+nnoremap <C-j> :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <C-k> :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <C-l> :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <C-;> :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <C-h> :lua require("harpoon.ui").nav_file(5)<CR>
 nnoremap <leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
 nnoremap <leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
@@ -349,7 +349,7 @@ nnoremap <leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
 
 let g:coc_node_path = '/home/tono/.nvm/versions/node/v18.4.0/bin/node'
 
-let g:coc_disable_transparent_cursor = 1
+let g:coc_disable_transparent_cursor = 0
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
@@ -415,7 +415,7 @@ nmap <silent> gr <Plug>(coc-references)
 
 
 " Use K to show documentation in preview window.
-nnoremap <silent> <C-k> :call <SID>show_documentation()<CR>
+nnoremap <silent> <C-0> :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

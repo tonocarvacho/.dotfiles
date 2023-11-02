@@ -42,7 +42,7 @@ fi
 
 #setxkbmap -model pc105 -layout us,us -variant dvorak, -option grp: win_space_toggle
 picom --experimental-backends --backend glx -b &
-xmobar ~/.config/xmobar/.xmobarrc &
+#xmobar ~/.config/xmobar/.xmobarrc &
 #nitrogen --restore &
 
 # key repeat speed

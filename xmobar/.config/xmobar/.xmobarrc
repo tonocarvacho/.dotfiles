@@ -1,11 +1,11 @@
 Config { font = "xft:Ubuntu-B::size=9:style=bold:antialias=true"
-       , additionalFonts = ["xft:'fa-regular-400'::size=21:antialias=true"]
+       , additionalFonts = ["xft:'Ubuntu-B'::size=9:style=bold:antialias=true"]
        , bgColor = "black"
        , fgColor = "#caa9fa"
        , alpha = 220
        , position = BottomSize L 100 26
        , textOffset = 18
-       , textOffsets = [24, 24]
+       , textOffsets = [18, 18]
        , lowerOnStart = False
        , pickBroadest = False
        , persistent = False
@@ -19,5 +19,5 @@ Config { font = "xft:Ubuntu-B::size=9:style=bold:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "}<fn=1>      \xf037</fn><fn=1>%UnsafeStdinReader%</fn>{<fc=#bd93f9>%date%</fc> "
+       , template = "<fn=1>%UnsafeStdinReader%</fn>}{<fc=#bd93f9>%date%</fc> "
        }

@@ -12,15 +12,17 @@ import Data.Monoid
 import System.Exit
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
---import XMonad.Util.ClickableWorkspaces
-
+import XMonad.Util.ClickableWorkspaces
+--import XMonad.Layout.Gaps
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
-
+import XMonad.Util.EZConfig
     -- Hooks
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+--import XMonad.Hooks.StatusBar
+--import XMonad.Hooks.StatusBar.PP
 
 import Colors.Dracula
 -- The preferred terminal program, which is used in a binding below and by
@@ -38,7 +40,8 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 0
+
+myBorderWidth   = 1
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -59,14 +62,15 @@ myModMask       = mod4Mask
 --myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
 --myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
 --myWorkspaces    = ["\61729","uu","aoeu","keep","term","slack","meet","mail","calendar"]
-myWorkspaces    = ["\61897","\62600","\63434", "\62026", "\62601","\61848","\62060", "\63215","\61747"]
+myWorkspaces    = [" [1]"," [2] ","[3]"," [4] ","[5]"," [6] ","[7]"," [8] ","[9]"]
+--myWorkspaces    = ["\61897","\62600","\63434", "\62026", "\62601","\61848","\62060", "\63215","\61747"]
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#020408"
-myFocusedBorderColor = "#282a36"
+--myNormalBorderColor  = "#020408"
+--myFocusedBorderColor = "#282a36"
 
---myNormalBorderColor  = "#6272a4"
---myFocusedBorderColor = "#ff79c6"
+myNormalBorderColor  = "#6272a4"
+myFocusedBorderColor = "#ff79c6"
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -76,7 +80,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_Return), spawn "kitty")
 
     -- launch dmenu
-    , ((modm, xK_n), spawn "dmenu_run")
+    , ((modm, xK_r), spawn "dmenu_run")
 
     -- launch google-chrome
 
@@ -88,17 +92,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
           , ((modm, xK_2), spawn "slack")
           , ((modm, xK_3), spawn "google-chrome-stable --app='https://mail.google.com/mail/u/1/#inbox'")
           , ((modm, xK_4), spawn "kitty -e ~/.xmonad/.startup.sh ~/.dotfiles nvim")
-          , ((modm, xK_5), spawn "google-chrome-stable")
-          , ((modm, xK_6), spawn "spotify")
+          , ((modm, xK_5), spawn "brave")
+          , ((modm, xK_0), spawn "spotify")
           , ((modm, xK_7), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/api")
           , ((modm, xK_8), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl")
-          , ((modm, xK_9), spawn "google-chrome-stable --app='https://keep.google.com'")
+          , ((modm, xK_9), spawn "brave --app='https://keep.google.com'")
           --, ((modm, xK_9), spawn "google-chrome-stable --app='https://meet.google.com/oez-vakt-zat?authuser=1'")
           --, ((modm, xK_i), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
           , ((modm, xK_f), spawn "kitty -e vifm")
           --, ((modm, xK_e), spawn "google-chrome-stable --app='https://calendar.google.com/calendar/u/1/r?pli=1'")
           , ((modm, xK_s), spawn "~/.config/scrot/.screenshot.sh")
           , ((modm, xK_a), spawn "feh --bg-fill --randomize ~/.config/wallpaper/* ")
+          , ((modm, xF86XK_AudioNext), spawn "playerctl next")
     -- close focused window
       , ((modm, xK_y), kill)
 
@@ -115,16 +120,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_Tab), windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm, xK_r), windows W.focusDown)
+    , ((modm, xK_comma), windows W.focusDown)
 
     -- Move focus to the previous window
-    , ((modm .|. shiftMask, xK_r), windows W.focusUp)
+    , ((modm .|. shiftMask, xK_n), windows W.focusUp)
 
     -- Move focus to the master window
     , ((modm, xK_m), windows W.focusMaster)
 
     -- Swap the focused window and the master window
-    , ((modm, xK_comma), windows W.swapMaster)
+    , ((modm, xK_period), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_braceleft), windows W.swapDown)
@@ -133,19 +138,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_braceright), windows W.swapUp)
 
     -- Shrink the master area
-    , ((modm, xK_bracketright), sendMessage Shrink)
+    , ((modm, xK_t), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm, xK_bracketleft), sendMessage Expand)
+    , ((modm, xK_g), sendMessage Expand)
 
     -- Push window back into tiling
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    , ((modm, xK_quotedbl ), sendMessage (IncMasterN 1))
+    , ((modm, xK_b), sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
-    , ((modm, xK_period), sendMessage (IncMasterN (-1)))
+    , ((modm, xK_n), sendMessage (IncMasterN (-1)))
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -213,6 +218,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- which denotes layout choice.
 --
 -- myLayout = tiled ||| Mirror tiled ||| Full
+--myLayout = smartBorders (gaps [(U,20), (R,20), (D,20), (L,20)] $ tiled ||| Full)
 myLayout = smartBorders (tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -286,7 +292,7 @@ myStartupHook = do
 myBar = "xmobar"
 
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
-myPP = xmobarPP { 
+myPP =  xmobarPP { 
  ppCurrent = 
         xmobarColor color03 "" 
         --xmobarColor color06 "" . wrap ("<box type=Bottom width=1 mb=1 color=" ++ color06 ++ ">") "</box>"
@@ -307,15 +313,15 @@ myPP = xmobarPP {
  }
 
 -- Key binding to toggle the gap for the bar.
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_d)
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
---main = xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
-main = xmonad defaults
+main = xmonad =<< statusBar myBar myPP toggleStrutsKey myDefaults
+--main = xmonad defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -345,6 +351,18 @@ defaults = def {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
+
+myDefaults = defaults
+             `additionalKeysP`
+             [ 
+               ("<XF86AudioPlay>", spawn "playerctl --player spotify play-pause"),
+               ("<XF86AudioNext>", spawn "playerctl next"),
+               ("<XF86AudioPrev>", spawn "playerctl previous"),
+               ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +2%"),
+               ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -2%")
+               --("<XF86AudioRaiseVolume>", spawn "playerctl --player spotify volume .02+"),
+               --("<XF86AudioLowerVolume>", spawn "playerctl --player spotify volume .02-")
+             ]
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String

@@ -1,7 +1,10 @@
 ### Archlinux Instalation ###
 
 - boot from pendrive and run archinstall
-- add apps: git stow neovim vifm curl kitty xorg xorg-init dmenu picom zsh xmonad xmobar xmonad-contrib starship nvidia scrot base-devel fzf xclip feh bat
+- add apps: 
+git stow neovim vifm curl kitty xorg xorg-init dmenu picom zsh
+xmonad xmobar xmonad-contrib starship nvidia scrot base-devel fzf xclip feh bat
+
 - install chrome
 - run xorg with "startx"
 - clone .dotfiles
@@ -16,8 +19,24 @@
 - install yay
 - install colorscript 
 
+spotify
+obs-studio
+vlc
+yarn
+nvm
+nextjs-nodejs
+google-chrome
+brave
+discord
+GIMP
+Slack
+code
 
 
+pendiente:
+- media keys
+- image reader
+- polybar
 
 
 

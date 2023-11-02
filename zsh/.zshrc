@@ -31,7 +31,7 @@ function _nvim {
 }
 
 zle -N _nvim
-bindkey '^h' _nvim
+bindkey '^j' _nvim
 
 function _vifm {
     zle push-input
@@ -40,7 +40,7 @@ function _vifm {
 }
 
 zle -N _vifm
-bindkey '^u' _vifm
+bindkey '^f' _vifm
 
 # ~/.zshrc
 
