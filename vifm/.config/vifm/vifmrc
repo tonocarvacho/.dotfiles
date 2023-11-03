@@ -30,15 +30,13 @@ set syscalls
 " I recommend not changing this until you are familiar with vifm.
 " This probably shouldn't be an option.
 
+" enable trash and set trash folder
 set trash
+set trashdir=~/.local/share/Trash/files
 
 " This is how many directories to store in the directory history.
 
 set history=100
-
-" Automatically resolve symbolic links on l or Enter.
-
-set nofollowlinks
 
 " Natural sort of (version) numbers within text.
 
@@ -52,6 +50,8 @@ set undolevels=100
 " If you would rather use a plain text help file set novimhelp.
 
 set vimhelp
+
+set relativenumber
 
 " If you would like to run an executable file when you
 " press Enter, l or Right Arrow, set this.
@@ -106,9 +106,38 @@ if !has('win')
     set slowfs=curlftpfs
 endif
 
-" Set custom status line look
+" set format of statusline
+set statusline="%t %20s %= %-30d %a"
 
-set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+" set format of file modification time
+set timefmt='%b %d, %Y @ %H:%M'
+
+" what to suggest on the right pane
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+
+" useful options
+set syscalls dotfiles 
+set followlinks 
+
+" copy parent directory path to clipboard
+nnoremap yd :!echo %d %i | xclip -i -r -selection 'clipboard' -f 
+            \| xclip -i -r -selection 'primary'<cr>
+" copy current file name to clipboard
+nnoremap yn :!echo %c %i | xclip -i -r -selection 'clipboard' -f 
+            \| xclip -i -r -selection 'primary'<cr>
+" copy current file full path to clipboard
+nnoremap yp :!echo %c:p %i | xclip -i -r -selection 'clipboard' -f 
+            \| xclip -i -r -selection 'primary'<cr>
+" mapping to create new blank file
+nnoremap t :touch<space>
+
+" mapping to create new folder
+nnoremap M :mkdir<space>
+
+" mapping to toggle select and move down
+nnoremap <space> tj
+" mapping to move up and toggle select
+nnoremap T kt
 
 " ------------------------------------------------------------------------------
 
@@ -116,6 +145,7 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 mark b ~/bin/
 mark h ~/
+mark d ~/downloads/
 
 " ------------------------------------------------------------------------------
 
@@ -202,7 +232,7 @@ filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.as[fx]},
          \<video/*>
         \ {View using vlc}
-        \ vlc,
+        \ setsid vlc,
         \ {View using ffplay}
         \ ffplay -fs -autoexit %f,
         \ {View using Dragon}
@@ -427,6 +457,17 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 " ------------------------------------------------------------------------------
 
 " Sample mappings
+" create new tab
+nnoremap <c-t> :tabnew<cr>:view!<cr>
+
+" switch to tab to the left
+nnoremap <c-j> :tabprevious<cr>:view!<cr>
+
+" switch to tab to the left
+nnoremap <c-k> :tabnext<cr>:view!<cr>
+
+" close tab
+nnoremap <c-y> :q<cr>
 
 " Start shell in current directory
 nnoremap s :shell<cr>

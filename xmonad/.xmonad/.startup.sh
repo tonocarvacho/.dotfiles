@@ -2,6 +2,9 @@
 
 cd $1 
 
-$2 
+if [ $2 ]
+then
+  $2 . 
+fi
 
 exec $SHELL

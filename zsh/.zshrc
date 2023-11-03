@@ -18,15 +18,18 @@ export NVM_DIR="$HOME/.nvm"
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
+  #export FZF_ALT_C_COMMAND='find .'
 fi
 
 source ~/.config/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-bindkey "^P" fzf-cd-widget
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+bindkey "^p" fzf-cd-widget
 
 function _nvim {
     zle push-input
-    BUFFER='nvim'
+    BUFFER='nvim .'
     zle accept-line
 }
 
@@ -35,7 +38,7 @@ bindkey '^j' _nvim
 
 function _vifm {
     zle push-input
-    BUFFER='vifm'
+    BUFFER='vicd .'
     zle accept-line
 }
 
@@ -45,5 +48,19 @@ bindkey '^f' _vifm
 # ~/.zshrc
 
 #colorscript random
+vicd()
+{
+    local dst="$(command vifm --choose-dir - "$@")"
+    if [ -z "$dst" ]; then
+        echo 'Directory picking cancelled/failed'
+        return 1
+    fi
+    cd "$dst"
+}
+
+plugins=(git
+zsh-autosuggestions
+zsh-syntax-highlighting
+)
 
 eval "$(starship init zsh)"

@@ -72,7 +72,7 @@ bindkey -M viins '^T' fzf-file-widget
 
 # ALT-C - cd into the selected directory
 fzf-cd-widget() {
-  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -path '*/.pki' -o -path '*/.rustup' -o -path '*/.nvm' -o -path '*/.local' -o -path '*/.gnome' -o -path '*/.gnupg' -o -path '*/.config' -o -path '*/.npm' -o -path '*/.yarn' -o -path '*/.cargo' -o -path '*/.cache' -o -path '*/node_modules*' -o -path '*/.git*' \\) -prune \
     -o -type d -print 2> /dev/null | cut -b3-"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
   local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"

@@ -31,12 +31,11 @@ discord
 GIMP
 Slack
 code
+docker
 
 
 pendiente:
-- media keys
 - image reader
-- polybar
 
 
 

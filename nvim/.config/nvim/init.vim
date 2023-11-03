@@ -258,12 +258,12 @@ vnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left><C-r>"
 nmap <Leader>t :CocCommand prettier.formatFile<CR>
 "nmap <Leader>t :CocCommand prettier.formatFile<CR>:w<CR>
 
+nmap <Leader>y :q!<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :w<CR>:bd<CR>
 nmap <Leader>c :bd!<CR>
 nmap <Leader>n :bn<CR>
 nmap <Leader>h <C-^>
-nmap <Leader>f :FloatermNew vifm<CR>
 
 nmap <Leader>s :noh<cr>
 
@@ -299,15 +299,19 @@ nmap <Leader>rp :w !python<CR>
 nmap <Leader>, :e ~/.config/nvim/init.vim<CR>
 nmap <Leader>. :w<CR>:source ~/.config/nvim/init.vim<CR>
 
+
+" ======== vifm  =========
+nnoremap <Leader>f :FloatermNew vifm<CR>
+
 " ======== TELESCOPE =========
 nnoremap <C-p> :Telescope git_files use_git_root=false<CR>
 "nnoremap <C-P> :Telescope find_files 
 nmap <C-y> :Telescope live_grep hidden=true<CR>
 nmap <Leader>l :Telescope buffers<CR>
-nnoremap gy :Telescope references<CR>
-nnoremap gu :Telescope git_status<CR>
+nnoremap gr :Telescope references<CR>
+nnoremap gs :Telescope git_status<CR>
 nnoremap gl :Telescope git_branches<CR>
-nnoremap gs :Telescope git_bcommits<CR>
+nnoremap gc :Telescope git_bcommits<CR>
 nnoremap gp :Telescope git_commits<CR>
 " ===========================
 
@@ -324,10 +328,12 @@ nmap <C-/> <plug>NERDCommenterToggle
 xmap <C-/> <plug>NERDCommenterToggle
 
 " ======== Harpoon =========
-nnoremap gc :G<CR>
-nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
-nnoremap <C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nmap <C-m> :lua require("harpoon.mark").add_file()<CR>
+nmap <C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
+" remove conflict
+let g:NERDTreeMapJumpNextSibling = ''
+let g:NERDTreeMapJumpPrevSibling = ''
 nnoremap <C-j> :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <C-k> :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <C-l> :lua require("harpoon.ui").nav_file(3)<CR>
@@ -338,7 +344,6 @@ nnoremap <leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
 nnoremap <leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
 " ===========================
-
 
 
 

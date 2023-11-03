@@ -13,6 +13,7 @@ import System.Exit
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 import XMonad.Util.ClickableWorkspaces
+import XMonad.Hooks.InsertPosition (insertPosition, Focus(Newer), Position(End))
 --import XMonad.Layout.Gaps
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -62,8 +63,8 @@ myModMask       = mod4Mask
 --myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
 --myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
 --myWorkspaces    = ["\61729","uu","aoeu","keep","term","slack","meet","mail","calendar"]
-myWorkspaces    = [" [1]"," [2] ","[3]"," [4] ","[5]"," [6] ","[7]"," [8] ","[9]"]
---myWorkspaces    = ["\61897","\62600","\63434", "\62026", "\62601","\61848","\62060", "\63215","\61747"]
+--myWorkspaces    = [" [1]"," [2] ","[3]"," [4] ","[5]"," [6] ","[7]"," [8] ","[9]"]
+myWorkspaces    = ["\61897"," \62600 ", "\62026", " \62601 ","\62060"," \61848 ", "\63215"," \61747 ","\63434"]
 -- Border colors for unfocused and focused windows, respectively.
 --
 --myNormalBorderColor  = "#020408"
@@ -80,7 +81,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_Return), spawn "kitty")
 
     -- launch dmenu
-    , ((modm, xK_r), spawn "dmenu_run")
+    , ((modm, xK_n), spawn "dmenu_run")
 
     -- launch google-chrome
 
@@ -88,22 +89,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm, xK_t), spawn "kitty")
 
     -- launch terminal in directory & apps
-          , ((modm, xK_1), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/web")
-          , ((modm, xK_2), spawn "slack")
-          , ((modm, xK_3), spawn "google-chrome-stable --app='https://mail.google.com/mail/u/1/#inbox'")
-          , ((modm, xK_4), spawn "kitty -e ~/.xmonad/.startup.sh ~/.dotfiles nvim")
-          , ((modm, xK_5), spawn "brave")
-          , ((modm, xK_0), spawn "spotify")
-          , ((modm, xK_7), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl/api")
-          , ((modm, xK_8), spawn "kitty -e ~/.xmonad/.startup.sh ~/rokket/turbus.cl")
-          , ((modm, xK_9), spawn "brave --app='https://keep.google.com'")
-          --, ((modm, xK_9), spawn "google-chrome-stable --app='https://meet.google.com/oez-vakt-zat?authuser=1'")
-          --, ((modm, xK_i), spawn "google-chrome-stable --app='https://meet.google.com/ban-yksn-iyo?authuser=1'")
-          , ((modm, xK_f), spawn "kitty -e vifm")
-          --, ((modm, xK_e), spawn "google-chrome-stable --app='https://calendar.google.com/calendar/u/1/r?pli=1'")
-          , ((modm, xK_s), spawn "~/.config/scrot/.screenshot.sh")
-          , ((modm, xK_a), spawn "feh --bg-fill --randomize ~/.config/wallpaper/* ")
-          , ((modm, xF86XK_AudioNext), spawn "playerctl next")
+    , ((modm, xK_1), spawn "kitty -e ~/.xmonad/.startup.sh ~/dev")
+    , ((modm, xK_2), spawn "kitty -e ~/.xmonad/.startup.sh ~/dev/drimo")
+    , ((modm, xK_3), spawn "kitty -e ~/.xmonad/.startup.sh ~/dev/archinstall nvim")
+    , ((modm, xK_4), spawn "kitty -e ~/.xmonad/.startup.sh ~/.dotfiles nvim")
+    , ((modm, xK_5), spawn "brave")
+    , ((modm, xK_6), spawn "brave --app='https://mail.google.com/mail/u/1/#inbox'")
+    , ((modm, xK_7), spawn "slack")
+    , ((modm, xK_8), spawn "brave --app='https://keep.google.com'")
+    , ((modm, xK_0), spawn "spotify")
+    , ((modm, xK_f), spawn "kitty -e vifm ~")
+    , ((modm, xK_s), spawn "~/.config/scrot/.screenshot.sh")
+    , ((modm, xK_a), spawn "feh --bg-fill --randomize ~/.config/wallpaper/* ")
+
     -- close focused window
       , ((modm, xK_y), kill)
 
@@ -138,19 +136,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_braceright), windows W.swapUp)
 
     -- Shrink the master area
-    , ((modm, xK_t), sendMessage Shrink)
+    , ((modm, xK_v), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm, xK_g), sendMessage Expand)
+    , ((modm, xK_b), sendMessage Expand)
 
     -- Push window back into tiling
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    , ((modm, xK_b), sendMessage (IncMasterN 1))
+    , ((modm, xK_t), sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
-    , ((modm, xK_n), sendMessage (IncMasterN (-1)))
+    , ((modm, xK_g), sendMessage (IncMasterN (-1)))
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -251,6 +249,7 @@ myLayout = smartBorders (tiled ||| Full)
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , insertPosition End Newer -- open new windows at the end
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 

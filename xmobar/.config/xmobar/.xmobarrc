@@ -1,11 +1,11 @@
-Config { font = "xft:Ubuntu-B::size=9:style=bold:antialias=true"
-       , additionalFonts = ["xft:'Ubuntu-B'::size=9:style=bold:antialias=true"]
+Config { font = "Ubuntu-B 10"
+       , additionalFonts = ["Ubuntu-B 16"]
        , bgColor = "black"
        , fgColor = "#caa9fa"
        , alpha = 220
        , position = BottomSize L 100 26
-       , textOffset = 18
-       , textOffsets = [18, 18]
+       , textOffset = 1
+       , textOffsets = [1, 1]
        , lowerOnStart = False
        , pickBroadest = False
        , persistent = False

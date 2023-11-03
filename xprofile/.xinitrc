@@ -41,7 +41,7 @@ fi
 #EndSection
 
 #setxkbmap -model pc105 -layout us,us -variant dvorak, -option grp: win_space_toggle
-picom --experimental-backends --backend glx -b &
+picom --backend glx -b &
 #xmobar ~/.config/xmobar/.xmobarrc &
 #nitrogen --restore &
 
