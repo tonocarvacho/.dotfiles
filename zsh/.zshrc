@@ -33,6 +33,14 @@ function _nvim {
     zle accept-line
 }
 
+function set-title() {
+  if [[ -z "$ORIG" ]]; then
+    ORIG=$PS1
+  fi
+  TITLE="\[\e]2;$*\a\]"
+  PS1=${ORIG}${TITLE}
+}
+
 zle -N _nvim
 bindkey '^j' _nvim
 
@@ -42,8 +50,17 @@ function _vifm {
     zle accept-line
 }
 
-zle -N _vifm
-bindkey '^f' _vifm
+zle -N _vifm 
+bindkey '^f' _vifm 
+
+function _tmux {
+    zle push-input
+    BUFFER='tmux-sessionizer'
+    zle accept-line
+}
+
+zle -N _tmux 
+bindkey '^e' _tmux 
 
 # ~/.zshrc
 
@@ -62,5 +79,7 @@ plugins=(git
 zsh-autosuggestions
 zsh-syntax-highlighting
 )
+
+precmd () {print -Pn "\e]0;%~\a"}
 
 eval "$(starship init zsh)"

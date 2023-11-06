@@ -14,6 +14,8 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 import XMonad.Util.ClickableWorkspaces
 import XMonad.Hooks.InsertPosition (insertPosition, Focus(Newer), Position(End))
+import XMonad.Actions.SpawnOn
+
 --import XMonad.Layout.Gaps
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -58,13 +60,13 @@ myModMask       = mod4Mask
 --
 -- A tagging example:
 --
--- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
+--myWorkspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 --myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
 --myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
 --myWorkspaces    = ["\61729","uu","aoeu","keep","term","slack","meet","mail","calendar"]
 --myWorkspaces    = [" [1]"," [2] ","[3]"," [4] ","[5]"," [6] ","[7]"," [8] ","[9]"]
-myWorkspaces    = ["\61897"," \62600 ", "\62026", " \62601 ","\62060"," \61848 ", "\63215"," \61747 ","\63434"]
+myWorkspaces    = [" \61897"," \62600 ", "\62026", " \62601 ","\62060"," \61848 ", "\63215"," \61747 ", "\63434"]
 -- Border colors for unfocused and focused windows, respectively.
 --
 --myNormalBorderColor  = "#020408"
@@ -89,15 +91,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm, xK_t), spawn "kitty")
 
     -- launch terminal in directory & apps
-    , ((modm, xK_1), spawn "kitty -e ~/.xmonad/.startup.sh ~/dev")
-    , ((modm, xK_2), spawn "kitty -e ~/.xmonad/.startup.sh ~/dev/drimo")
-    , ((modm, xK_3), spawn "kitty -e ~/.xmonad/.startup.sh ~/dev/archinstall nvim")
-    , ((modm, xK_4), spawn "kitty -e ~/.xmonad/.startup.sh ~/.dotfiles nvim")
-    , ((modm, xK_5), spawn "brave")
-    , ((modm, xK_6), spawn "brave --app='https://mail.google.com/mail/u/1/#inbox'")
-    , ((modm, xK_7), spawn "slack")
-    , ((modm, xK_8), spawn "brave --app='https://keep.google.com'")
-    , ((modm, xK_0), spawn "spotify")
+    , ((modm, xK_8), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/")
+    , ((modm, xK_9), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work")
+    , ((modm, xK_3), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/dev/archinstall")
+    , ((modm, xK_7), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/.dotfiles")
+    , ((modm, xK_4), spawn "brave")
+    , ((modm, xK_5), spawn "brave --app='https://mail.google.com/mail/u/1/#inbox'")
+    , ((modm, xK_6), spawn "brave --app='https://web.whatsapp.com/'")
+    --, ((modm, xK_8), spawn "slack")
+    --, ((modm, xK_9), spawn "brave --app='https://keep.google.com'")
+    , ((modm, xK_0), spawn "brave --app='https://open.spotify.com/'")
+    --, ((modm, xK_0), spawn "spotify")
     , ((modm, xK_f), spawn "kitty -e vifm ~")
     , ((modm, xK_s), spawn "~/.config/scrot/.screenshot.sh")
     , ((modm, xK_a), spawn "feh --bg-fill --randomize ~/.config/wallpaper/* ")
@@ -172,7 +176,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_j, xK_k, xK_l, xK_semicolon, xK_u, xK_i, xK_o, xK_p, xK_h]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_j, xK_k, xK_l, xK_semicolon, xK_u, xK_i, xK_o, xK_p, xK_h ]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 
@@ -283,7 +287,9 @@ myLogHook = return ()
 
 myStartupHook :: X ()
 myStartupHook = do
-   --spawn "kitty -e ~/.xmonad/scripts/.startup.sh"
+   --spawn "kitty -e tmux"
+ --  spawnOn " \62600 " "brave"
+   --spawnOn "\63434" "brave --app='https://open.spotify.com/'"
    spawn "feh --bg-fill --randomize ~/.config/wallpaper/* "
 
 ------------------------------------------------------------------------
@@ -345,7 +351,7 @@ defaults = def {
 
       -- hooks, layouts
         layoutHook         = spacingRaw True (Border 0 0 0 0) True (Border 0 0 0 0) True $ myLayout,
-        manageHook         = myManageHook,
+        manageHook         = manageSpawn <+> myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
         startupHook        = myStartupHook

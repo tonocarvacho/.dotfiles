@@ -2,3 +2,61 @@ URxvt.font:                xft:Ubuntu-R:pixelsize=16
 URxvt.boldFont:            xft:Ubuntu-B:pixelsize=16:bold
 URxvt.italicFont:          xft:Ubuntu-I:pixelsize=16:italic
 URxvt.boldItalicFont:      xft:Ubuntu-R:pixelsize=16:bold:italic
+
+
+!XTerm.termName: xterm-256color
+
+! ## Set font and fontsize ##
+!XTerm*faceName: DejaVu Sans Mono 
+!XTerm*faceSize: 11
+!*.font: xft:DejaVu Sans Mono Nerd:size=11
+
+!xterm.vt100.reverseVideo: true
+!xterm*background: #00000080
+!XTerm*background: #000000
+!xterm*foreground: rgb:da/c4/cb
+!xterm*background: black
+!XTerm*background: rgb:0a/01/07
+
+!xterm*faceName: Terminus:style=Regular:size=10
+!xterm*faceName: Dina:style=Regular:size=10
+!xterm*faceName: Ubuntu Mono:style=Regular:size=10
+xterm*faceName: DejaVu Sans Mono:style=Regular:size=11
+!xterm*faceName: Liberation Mono:style=Regular:size=10
+!xterm*font: -*-dina-medium-r*-*-16-*-*-*-*-*-*-*-*
+!xterm*faceName: Liberation Mono For Powerline:style=Regular:size=10:antialias=true
+xterm*allowTransparency: true
+xterm*background: #000000
+xterm*font: 7x13
+xterm*dynamicColors: true
+xterm*eightBitInput: true
+xterm*saveLines: 8096
+xterm*scrollKey: true
+xterm*scrollBar: false
+xterm*multiScroll: true
+xterm*cursorBlink: false
+xterm*utf8: true
+xterm*utf8Fonts: true
+xterm*alwaysUseMods: true
+xterm*autowrap: false
+xterm*selectToClipboard: true
+
+XTerm*color01 : #000000
+XTerm*color02 : #50fa7b
+XTerm*color03 : #ff5555
+XTerm*color04 : #f1fa8c
+XTerm*color05 : #8be9fd
+XTerm*color06 : #bd93f9
+XTerm*color07 : #ff79c6
+XTerm*color08 : #6272a4
+XTerm*color09 : #4d4d4d
+XTerm*color10 : #ff6e67
+XTerm*color11 : #5af78e
+XTerm*color12 : #f4f99d
+XTerm*color13 : #caa9fa
+XTerm*color14 : #ff92d0
+XTerm*color15 : #9aedfe
+XTerm*color16 : #e6e6e6
+
+
+XTerm*font: -*-terminus-medium-*-*-*-18-*-*-*-*-*-iso10646-1
