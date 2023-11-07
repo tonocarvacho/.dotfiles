@@ -1,5 +1,5 @@
 --
--- xmonad example config file.
+
 --
 -- A template showing all available configuration hooks,
 -- and how to override the defaults in your own xmonad.hs conf file.
@@ -66,7 +66,7 @@ myModMask       = mod4Mask
 --myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
 --myWorkspaces    = ["\61729","uu","aoeu","keep","term","slack","meet","mail","calendar"]
 --myWorkspaces    = [" [1]"," [2] ","[3]"," [4] ","[5]"," [6] ","[7]"," [8] ","[9]"]
-myWorkspaces    = [" \61897"," \62600 ", "\62026", " \62601 ","\62060"," \61848 ", "\63215"," \61747 ", "\63434"]
+myWorkspaces    = [" \61897","\62600", "\62026", "\62601","\62060","\61848", "\63215","\61747", "\63434"]
 -- Border colors for unfocused and focused windows, respectively.
 --
 --myNormalBorderColor  = "#020408"
@@ -92,13 +92,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch terminal in directory & apps
     , ((modm, xK_8), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/")
-    , ((modm, xK_9), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work")
-    , ((modm, xK_3), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/dev/archinstall")
+    , ((modm, xK_9), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/easypay-spring-bl/")
+    , ((modm, xK_3), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/esypay-spring-dal")
+    , ((modm, xK_2), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/easypay-angular-fe")
     , ((modm, xK_7), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/.dotfiles")
     , ((modm, xK_4), spawn "brave")
     , ((modm, xK_5), spawn "brave --app='https://mail.google.com/mail/u/1/#inbox'")
     , ((modm, xK_6), spawn "brave --app='https://web.whatsapp.com/'")
-    --, ((modm, xK_8), spawn "slack")
+    , ((modm, xK_1), spawn "brave --app='https://app.slack.com/client/'")
     --, ((modm, xK_9), spawn "brave --app='https://keep.google.com'")
     , ((modm, xK_0), spawn "brave --app='https://open.spotify.com/'")
     --, ((modm, xK_0), spawn "spotify")

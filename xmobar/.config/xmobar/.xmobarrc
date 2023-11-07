@@ -1,5 +1,5 @@
-Config { font = "Ubuntu-B 10"
-       , additionalFonts = ["Ubuntu-B 16"]
+Config { font = "DejaVu Sans Mono 11"
+       , additionalFonts = ["DejaVu Sans Mono 17"]
        , bgColor = "black"
        , fgColor = "#caa9fa"
        , alpha = 220
@@ -13,7 +13,7 @@ Config { font = "Ubuntu-B 10"
        , iconRoot = "."
        , allDesktops = False
        , commands = [                      
-                    Run Date " %b %d %Y ∙ %H:%M " "date" 50
+                    Run Date "%d %b %Y ∙ %H:%M " "date" 50
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
                     , Run UnsafeStdinReader
                     ]
