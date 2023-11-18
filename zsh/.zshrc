@@ -22,10 +22,10 @@ if type rg &> /dev/null; then
   #export FZF_ALT_C_COMMAND='find .'
 fi
 alias tvf='tmux new-window -s vifm'
-source ~/.config/fzf/key-bindings.zsh
+source $HOME/.config/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 bindkey "^p" fzf-cd-widget
 
 function _nvim {
