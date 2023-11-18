@@ -15,6 +15,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Util.ClickableWorkspaces
 import XMonad.Hooks.InsertPosition (insertPosition, Focus(Newer), Position(End))
 import XMonad.Actions.SpawnOn
+import XMonad.Actions.CycleWS
 
 --import XMonad.Layout.Gaps
 import qualified XMonad.StackSet as W
@@ -66,7 +67,7 @@ myModMask       = mod4Mask
 --myWorkspaces    = ["\61897","","\63434",奈,"\62026","\62601","\61848","ﳲ","\63215","\61747"]
 --myWorkspaces    = ["\61729","uu","aoeu","keep","term","slack","meet","mail","calendar"]
 --myWorkspaces    = [" [1]"," [2] ","[3]"," [4] ","[5]"," [6] ","[7]"," [8] ","[9]"]
-myWorkspaces    = [" \61897","\62600", "\62026", "\62601","\62060","\61848", "\63215","\61747", "\63434"]
+myWorkspaces    = ["\62600", "\62026", "\62601","\62060","\61848", "\63215","\61747", "\60011", "\63434"]
 -- Border colors for unfocused and focused windows, respectively.
 --
 --myNormalBorderColor  = "#020408"
@@ -91,54 +92,53 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm, xK_t), spawn "kitty")
 
     -- launch terminal in directory & apps
-    , ((modm, xK_8), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/")
-    , ((modm, xK_9), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/easypay-spring-bl/")
-    , ((modm, xK_3), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/esypay-spring-dal")
-    , ((modm, xK_2), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/easypay-angular-fe")
-    , ((modm, xK_7), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/.dotfiles")
-    , ((modm, xK_4), spawn "brave")
-    , ((modm, xK_5), spawn "brave --app='https://mail.google.com/mail/u/1/#inbox'")
-    , ((modm, xK_6), spawn "brave --app='https://web.whatsapp.com/'")
-    , ((modm, xK_1), spawn "brave --app='https://app.slack.com/client/'")
+    , ((modm .|. mod1Mask, xK_i), spawn "brave")
+    , ((modm .|. mod1Mask, xK_u), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/.dotfiles")
+    , ((modm .|. mod1Mask, xK_p), spawn "brave --app='https://app.slack.com/client/'")
+    , ((modm .|. mod1Mask, xK_o), spawn "spotify")
+    , ((modm .|. mod1Mask, xK_y), spawn "brave --app='https://web.whatsapp.com/'")
+    --, ((modm .|. mod1Mask, xK_t), spawn "brave --app='https://mail.google.com/mail/u/1/#inbox'")
+    , ((modm .|. mod1Mask, xK_t), spawn "brave --app='https://calendar.google.com/calendar/u/0/r/week'")
+    , ((modm .|. mod1Mask, xK_r), spawn "brave --app='https://photopea.com/'")
+    , ((modm .|. mod1Mask, xK_Return), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/")
+    --, ((modm .|. mod1Mask, xK_i), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/easypay-angular-fe")
+    --, ((modm .|. mod1Mask, xK_p), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/easypay-spring-bl/")
+    --, ((modm .|. mod1Mask, xK_o), spawn "kitty -e ~/.local/bin/tmux-sessionizer ~/work/esypay-spring-dal")
+    --, ((modm .|. mod1Mask, xK_r), spawn "brave --app='https://open.spotify.com/'")
     --, ((modm, xK_9), spawn "brave --app='https://keep.google.com'")
-    , ((modm, xK_0), spawn "brave --app='https://open.spotify.com/'")
-    --, ((modm, xK_0), spawn "spotify")
     , ((modm, xK_f), spawn "kitty -e vifm ~")
     , ((modm, xK_s), spawn "~/.config/scrot/.screenshot.sh")
     , ((modm, xK_a), spawn "feh --bg-fill --randomize ~/.config/wallpaper/* ")
 
     -- close focused window
-      , ((modm, xK_y), kill)
+     , ((modm, xK_q), kill)
 
-     -- Rotate through the available layout algorithms
-      , ((modm, xK_c ), sendMessage NextLayout)
+    -- Rotate through the available layout algorithms
+     , ((modm, xK_c ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
     -- , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
     -- , ((modm, xK_n), refresh)
+    , ((modm, xK_j), toggleWS)
+    -- Move focus to the next window
+    , ((modm, xK_l), windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm, xK_Tab), windows W.focusDown)
-
-    -- Move focus to the next window
-    , ((modm, xK_comma), windows W.focusDown)
-
-    -- Move focus to the previous window
-    , ((modm .|. shiftMask, xK_n), windows W.focusUp)
+    , ((modm, xK_h), windows W.focusUp)
 
     -- Move focus to the master window
     , ((modm, xK_m), windows W.focusMaster)
 
     -- Swap the focused window and the master window
-    , ((modm, xK_period), windows W.swapMaster)
+    , ((modm, xK_comma), windows W.swapMaster)
 
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_braceleft), windows W.swapDown)
+    --, ((modm .|. shiftMask, xK_braceleft), windows W.swapDown)
 
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_braceright), windows W.swapUp)
+    --, ((modm .|. shiftMask, xK_braceright), windows W.swapUp)
 
     -- Shrink the master area
     , ((modm, xK_v), sendMessage Shrink)
@@ -150,10 +150,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    , ((modm, xK_t), sendMessage (IncMasterN 1))
+    --, ((modm, xK_v), sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
-    , ((modm, xK_g), sendMessage (IncMasterN (-1)))
+    --, ((modm, xK_c), sendMessage (IncMasterN (-1)))
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -177,7 +177,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_j, xK_k, xK_l, xK_semicolon, xK_u, xK_i, xK_o, xK_p, xK_h ]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_w, xK_e, xK_r, xK_t, xK_y, xK_u, xK_i, xK_o, xK_p ]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 

@@ -18,6 +18,7 @@ xmonad xmobar xmonad-contrib starship nvidia scrot base-devel fzf xclip feh bat
 - install ly (make, service, make xinitrc executable)
 - install yay
 - install colorscript 
+- java, gradle, yay gitmux
 
 spotify
 obs-studio
@@ -38,6 +39,16 @@ pendiente:
 - image reader
 
 
+### screen bright ###
+gummy start
+gummy -b 30
+gummy -t 4200
+
+
+### update ###
+sudo pacman -Syu
+sudo pacman-key --refresh-keys
+sudo pacman -Sc 
 
 ### Vim shorts ###
 

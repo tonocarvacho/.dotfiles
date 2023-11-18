@@ -1,4 +1,4 @@
-Config { font = "DejaVu Sans Mono 11"
+Config { font = "Inconsolata LGC Nerd Font Complete 11"
        , additionalFonts = ["DejaVu Sans Mono 17"]
        , bgColor = "black"
        , fgColor = "#caa9fa"

@@ -8,22 +8,31 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
-    -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+      'nvim-telescope/telescope.nvim', 
+      requires = { {'nvim-lua/plenary.nvim'}, { "nvim-telescope/telescope-live-grep-args.nvim" } },
+
+      config = function()
+          require("telescope").load_extension("live_grep_args")
+      end
   }
 
   use 'Mofiqul/dracula.nvim'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+  }
   use("theprimeagen/harpoon")
   use("tpope/vim-fugitive")
   use("mbbill/undotree")
   use("nvim-treesitter/nvim-treesitter-context");
   use("jiangmiao/auto-pairs")
   use("alvan/vim-closetag")
-  use("airblade/vim-gitgutter")
+  --use("airblade/vim-gitgutter")
+  use("lewis6991/gitsigns.nvim")
   use("APZelos/blamer.nvim")
   use("voldikss/vim-floaterm")
   use("ThePrimeagen/vim-be-good")

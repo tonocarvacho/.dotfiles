@@ -11,6 +11,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+export PATH=$PATH:/opt/gradle/gradle-7.6.3/bin
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -20,7 +21,7 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
   #export FZF_ALT_C_COMMAND='find .'
 fi
-
+alias tvf='tmux new-window -s vifm'
 source ~/.config/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -79,6 +80,8 @@ plugins=(git
 zsh-autosuggestions
 zsh-syntax-highlighting
 )
+
+#pokemon-colorscripts -r --no-title
 
 precmd () {print -Pn "\e]0;%~\a"}
 

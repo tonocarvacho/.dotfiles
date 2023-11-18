@@ -33,6 +33,7 @@ dracula.setup({
   -- use transparent background
   transparent_bg = true, -- default false
   -- set custom lualine background color
+  lualine_bg_color = "#21222C", -- default nil
   -- set italic comment
   italic_comment = true, -- default false
   -- overrides the default highlights with table see `:h synIDattr`
