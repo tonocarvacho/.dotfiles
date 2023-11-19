@@ -39,16 +39,24 @@ pendiente:
 - image reader
 
 
-### screen bright ###
+### SCREEN BRIGHT ###
 gummy start
 gummy -b 30
 gummy -t 4200
 
 
-### update ###
+### PACMAN ###
+
+# update
 sudo pacman -Syu
 sudo pacman-key --refresh-keys
+
+# clean cache 
 sudo pacman -Sc 
+
+# uninstall package
+sudo pacman -Rcns <package>
+
 
 ### Vim shorts ###
 
