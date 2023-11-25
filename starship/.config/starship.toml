@@ -55,5 +55,15 @@ disabled = true
 [gradle]
 disabled = true
 
+[lua]
+disabled = true
+
+[haskell]
+disabled = true
+
+[python]
+disabled = true
+
 [nodejs]
 disabled = true
+

@@ -2,7 +2,8 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-bindkey -v
+#bindkey -v
+#
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/tono/.zshrc'
@@ -21,7 +22,13 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
   #export FZF_ALT_C_COMMAND='find .'
 fi
-alias tvf='tmux new-window -s vifm'
+
+alias tvf='tmux new-window vifm ~'
+alias k='tmux kill-server'
+alias l='tmux list-sessions'
+alias t='tmux-sessionizer ~/.dotfiles'
+alias s='sudo vifm'
+
 source $HOME/.config/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -47,7 +54,7 @@ bindkey '^j' _nvim
 
 function _vifm {
     zle push-input
-    BUFFER='vicd .'
+    BUFFER='vifm .'
     zle accept-line
 }
 

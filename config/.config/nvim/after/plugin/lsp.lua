@@ -17,7 +17,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'jdtls', 'lua-language-server'},
+  ensure_installed = {'tsserver', 'rust_analyzer', 'jdtls', 'gradle_ls', 'lua_ls', 'cssls'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -29,6 +29,17 @@ require('mason-lspconfig').setup({
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
+
+--lspconfig.cssls.setup({
+  --cmd = { 'vscode-html-language-server', 'vscode-css-language-server', 'vscode-eslint-language-server', 'vscode-json-language-server' },
+  --settings = {
+    --scss = {
+      --lint = {
+        --idSelector = "warning",
+      --},
+    --},
+  --},
+--})
 
 cmp.setup({
   sources = {

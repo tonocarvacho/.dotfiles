@@ -1,7 +1,7 @@
 require('lualine').setup {
   options = {
- theme = require('linetheme').theme(),
- globalstatus = true,
+    theme = require('linetheme').theme(),
+    globalstatus = true,
     component_separators = { left = "", right = "" },
     disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
   },
@@ -9,7 +9,7 @@ require('lualine').setup {
   sections = {
     lualine_a = {},
     lualine_b = {
-},
+    },
     lualine_c = {
       {"diff",
       symbols = {
@@ -31,28 +31,28 @@ require('lualine').setup {
         end
       end,
     }, {
-        "diagnostics",
-        sources = { "nvim_diagnostic" },
-        sections = { "error", "warn", "info", "hint" },
-        symbols = {
-          error = " ",
-          hint = " ",
-          info = " ",
-          warn = " ",
-        },
-        colored = true,
-        update_in_insert = false,
-        always_visible = false,
+      "diagnostics",
+      sources = { "nvim_diagnostic" },
+      sections = { "error", "warn", "info", "hint" },
+      symbols = {
+        error = " ",
+        hint = " ",
+        info = " ",
+        warn = " ",
       },
-
-      {
-        'filename',
-        --path = 1,
-      }
+      colored = true,
+      update_in_insert = false,
+      always_visible = false,
     },
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {},
-    } 
+
+    {
+      'filename',
+      --path = 1,
+    }
+  },
+  lualine_x = {},
+  lualine_y = {},
+  lualine_z = {},
+} 
   }
 

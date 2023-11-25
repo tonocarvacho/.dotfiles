@@ -20,6 +20,8 @@ vim.keymap.set("n", "<leader>h", ":bp<CR>")
 vim.keymap.set("n", "<leader>l", ":bn<CR>")
 vim.keymap.set("n", "<C-j>", ":b#<CR>")
 
+vim.keymap.set("n", "<leader>p", ":DBUI<CR>")
+vim.keymap.set("n", "<leader>a", ":%bd|e#|bd#<CR>")
 --vim.keymap.set("n", "<C-f>", ":FloatermNew vifm<CR>")
 --vim.keymap.set("n", "<C-f>", "<cmd>tvf<CR>")
 
@@ -41,7 +43,6 @@ vim.keymap.set("x", "p", [["_dP]])
 --vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
-
 -- This is going to get me cancelled
 --vim.keymap.set("i", "<C-c>", "<Esc>")
 
@@ -51,7 +52,7 @@ vim.keymap.set("n", "<C-e>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 --vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
---vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+--vim.keymap.set("n", "<C-j>", "<cmd>cpre<CR>zz")
 --vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 --vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
