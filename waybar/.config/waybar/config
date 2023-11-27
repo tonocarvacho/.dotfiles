@@ -55,7 +55,7 @@
     },
     "custom/launcher":{
         "format": "",
-        "on-click": "wofi --show drun",
+        "on-click": "rofi --show run",
         "on-click-right": "killall wofi"
     },
     "custom/brave":{
