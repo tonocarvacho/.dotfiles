@@ -6,6 +6,17 @@ open vim with telescope open
 # VIA KEYBOARD PERMISSION
 sudo chmod a+rw /dev/hidraw3
 
+# INSTALL SHH KEYS
+cp /path/to/my/key/id_rsa ~/.ssh/id_rsa
+cp /path/to/my/key/id_rsa.pub ~/.ssh/id_rsa.pub
+# change permissions on file
+sudo chmod 600 ~/.ssh/id_rsa
+sudo chmod 600 ~/.ssh/id_rsa.pub
+# start the ssh-agent in the background
+eval $(ssh-agent -s)
+# make ssh agent to actually use copied key
+ssh-add ~/.ssh/id_rsa
+
 ### SCREEN BRIGHT ###
 gummy start
 gummy -b 30

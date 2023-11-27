@@ -11,7 +11,7 @@ zstyle :compinstall filename '/home/tono/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
+export QT_QPA_PLATFORM=wayland
 export PATH=$PATH:/opt/gradle/gradle-7.6.3/bin
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
