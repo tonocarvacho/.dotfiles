@@ -19,11 +19,14 @@ export QT_STYLE_OVERRIDE=adwaita-dark
 
 export PATH=$PATH:/opt/gradle/gradle-7.6.3/bin
 
+# ~/.tmux/plugins
+export PATH=~/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export FONTCONFIG_FILE=$HOME/.config/fontconfig/fonts.conf
+#export FONTCONFIG_FILE=$HOME/.config/fontconfig/fonts.conf
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
@@ -31,10 +34,11 @@ if type rg &> /dev/null; then
   #export FZF_ALT_C_COMMAND='find .'
 fi
 
-alias tvf='tmux new-window vifm ~'
+#alias tvf='tmux new-window vifm ~'
 alias k='tmux kill-server'
 alias l='tmux list-sessions'
-alias t='~/.local/bin/tmux-sessionizer ~/.dotfiles'
+#alias t='~/.tmux/plugins/t-smart-tmux-session-manager/bin'
+#alias e='~/.local/bin/tmux-sessionizer ~/.dotfiles'
 alias s='sudo vifm'
 
 source $HOME/.config/fzf/key-bindings.zsh
@@ -71,7 +75,7 @@ bindkey '^f' _vifm
 
 function _tmux {
     zle push-input
-    BUFFER='tmux-sessionizer'
+    BUFFER='t'
     zle accept-line
 }
 
@@ -100,4 +104,5 @@ zsh-syntax-highlighting
 
 precmd () {print -Pn "\e]0;%~\a"}
 
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

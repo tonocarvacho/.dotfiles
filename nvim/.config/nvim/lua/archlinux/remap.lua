@@ -16,8 +16,9 @@ vim.keymap.set("n", "<C-a>", ":q!<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", "<leader>q", ":bd!<CR>")
 --vim.keymap.set("n", "<leader>q", ":w<CR>:bd<CR>")
-vim.keymap.set("n", "<leader>h", ":bp<CR>")
-vim.keymap.set("n", "<leader>l", ":bn<CR>")
+--vim.keymap.set("n", "<leader>j", ":bp<CR>")
+vim.keymap.set("n", "<C-k>", ":bp<CR>")
+vim.keymap.set("n", "<C-l>", ":bn<CR>")
 vim.keymap.set("n", "<C-j>", ":b#<CR>")
 
 vim.keymap.set("n", "<leader>p", ":DBUI<CR>")
@@ -48,7 +49,8 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
 
-vim.keymap.set("n", "<C-e>", "<cmd>silent !tmux neww ~/.local/bin/tmux-sessionizer<CR>")
+vim.keymap.set("n", "<C-e>", "<cmd>silent !tmux neww t<CR>")
+--vim.keymap.set("n", "<C-e>", "<cmd>silent !tmux neww ~/.local/bin/tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 --vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")

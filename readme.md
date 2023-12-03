@@ -22,6 +22,8 @@ gummy start
 gummy -b 30
 gummy -t 4200
 
+### NVIM ###
+if vim error :TSInstall all
 
 ### PACMAN ###
 

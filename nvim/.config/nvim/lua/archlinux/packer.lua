@@ -20,13 +20,14 @@ return require('packer').startup(function(use)
 
  -- utilities --
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4', 
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
     requires = { {'nvim-lua/plenary.nvim'} },
   }
   use("theprimeagen/harpoon")
   use("mbbill/undotree")
   use 'tpope/vim-dadbod'
   use 'kristijanhusak/vim-dadbod-ui'
+  
  -- git --
   use("tpope/vim-fugitive")
   use("lewis6991/gitsigns.nvim")

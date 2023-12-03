@@ -40,5 +40,5 @@ vim.keymap.set('n', '<leader>sg', function()
 end)
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>sl', ":Telescope buffers<CR>")
-vim.keymap.set('n', '<leader>sr', builtin.lsp_references, {})
+vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
 
