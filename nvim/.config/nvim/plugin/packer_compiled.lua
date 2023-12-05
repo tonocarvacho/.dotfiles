@@ -174,6 +174,12 @@ _G.packer_plugins = {
     path = "/home/tono/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
+  ["obsidian.nvim"] = {
+    config = { "\27LJ\2\nD\0\0\3\0\4\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0009\0\3\0D\0\1\0\19gf_passthrough\tutil\robsidian\frequireE\0\0\3\0\4\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0009\0\3\0D\0\1\0\20toggle_checkbox\tutil\robsidian\frequire\2\1\0\a\0\19\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\17\0005\3\15\0005\4\3\0>\4\1\0035\4\t\0005\5\5\0003\6\4\0=\6\6\0055\6\a\0=\6\b\5=\5\n\0045\5\f\0003\6\v\0=\6\6\0055\6\r\0=\6\b\5=\5\14\4=\4\16\3=\3\18\2B\0\2\1K\0\1\0\15workspaces\1\0\0\rmappings\1\0\0\15<leader>ch\1\0\1\vbuffer\2\1\0\0\0\agf\1\0\0\topts\1\0\3\texpr\2\fnoremap\1\vbuffer\2\vaction\1\0\0\0\1\0\2\tname\rpersonal\tpath\21~/personal/notes\nsetup\robsidian\frequire\0" },
+    loaded = true,
+    path = "/home/tono/.local/share/nvim/site/pack/packer/start/obsidian.nvim",
+    url = "https://github.com/epwalsh/obsidian.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/tono/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -223,10 +229,19 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tono/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-tpipeline"] = {
+    loaded = true,
+    path = "/home/tono/.local/share/nvim/site/pack/packer/start/vim-tpipeline",
+    url = "https://github.com/vimpostor/vim-tpipeline"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: obsidian.nvim
+time([[Config for obsidian.nvim]], true)
+try_loadstring("\27LJ\2\nD\0\0\3\0\4\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0009\0\3\0D\0\1\0\19gf_passthrough\tutil\robsidian\frequireE\0\0\3\0\4\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0009\0\3\0D\0\1\0\20toggle_checkbox\tutil\robsidian\frequire\2\1\0\a\0\19\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\17\0005\3\15\0005\4\3\0>\4\1\0035\4\t\0005\5\5\0003\6\4\0=\6\6\0055\6\a\0=\6\b\5=\5\n\0045\5\f\0003\6\v\0=\6\6\0055\6\r\0=\6\b\5=\5\14\4=\4\16\3=\3\18\2B\0\2\1K\0\1\0\15workspaces\1\0\0\rmappings\1\0\0\15<leader>ch\1\0\1\vbuffer\2\1\0\0\0\agf\1\0\0\topts\1\0\3\texpr\2\fnoremap\1\vbuffer\2\vaction\1\0\0\0\1\0\2\tname\rpersonal\tpath\21~/personal/notes\nsetup\robsidian\frequire\0", "config", "obsidian.nvim")
+time([[Config for obsidian.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

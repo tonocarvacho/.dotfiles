@@ -22,6 +22,7 @@ tmux:
     stashed: "#[fg=gray,nobold]"
     clean: "#[fg=#50fa7b,nobold]"
     divergence: "#[fg=cyan,nobold]"
+  #layout: [divergence, flags, stats, " "]
   layout: [branch, divergence, flags, stats, " "]
   options:
     branch_max_len: 0

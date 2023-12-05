@@ -55,12 +55,17 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 --vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 --vim.keymap.set("n", "<C-j>", "<cmd>cpre<CR>zz")
---vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
---vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+--vim.ke.p.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+--vim.ke.p.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
+--vim.ke.p.set("n", "<leader>v", [[*Ncw]])
+--vim.ke.p.set("n", "<leader>v", [[*Ncw]])
+vim.keymap.set("n", "<leader>d", '/<c-r>"<CR>')
+--vim.keymap.set("v", "<leader>v", [[:%s/\<<C-r><C-w>\>//g<Left><Left><C-r>]])
 vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("v", "<leader>sr", [[y:%s/<c-r>"/<C-r>"/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
+--vim.keymap.set('v', '<leader>v', [[:%s]], { noremap = true, silent = true })
 --vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 --vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
@@ -69,4 +74,4 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-
+--vim.keymap.set('n', '<Leader>n', [[:let @/='\\%V'..vim.fn.escape(@",'\\/")..'\\%V' \| vim.fn.search(@,'W')<CR>]], { noremap = true, silent = true })

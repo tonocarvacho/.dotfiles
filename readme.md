@@ -27,6 +27,9 @@ if vim error :TSInstall all
 
 ### PACMAN ###
 
+# CLI
+sudo rm -r dir
+
 # update
 sudo pacman -Syu
 sudo pacman-key --refresh-keys

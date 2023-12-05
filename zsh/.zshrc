@@ -12,6 +12,7 @@ autoload -Uz compinit
 compinit
 
 export QT_QPA_PLATFORM=wayland
+export QT_QUICK_BACKEND=software
 
 export GTK_THEME=Adwaita:dark, 
 export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
@@ -21,6 +22,7 @@ export PATH=$PATH:/opt/gradle/gradle-7.6.3/bin
 
 # ~/.tmux/plugins
 export PATH=~/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+#export T_SESSION_NAME_INCLUDE_PARENT="true"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

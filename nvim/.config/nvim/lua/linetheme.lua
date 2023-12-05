@@ -13,33 +13,33 @@ M.theme = function()
     }
     return {
         inactive = {
-            a = { fg = colors.gray, bg = colors.innerbg, gui = "bold" },
-            b = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#000000" },
             c = { fg = "#6272a4", bg = "#000000" },
         },
         visual = {
-            a = { fg = colors.innerbg, bg = colors.visual, gui = "bold" },
-            b = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#000000" },
             c = { fg = "#6272a4", bg = "#000000" },
         },
         replace = {
-            a = { fg = "#000000", bg = colors.replace, gui = "bold" },
-            b = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#000000" },
             c = { fg = "#6272a4", bg = "#000000" },
         },
         normal = {
-            a = { fg = "#000000", bg = colors.normal, gui = "bold" },
-            b = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#000000" },
             c = { fg = "#6272a4", bg = "#000000" },
         },
         insert = {
-            a = { fg = "#000000", bg = colors.insert, gui = "bold" },
-            b = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#000000" },
             c = { fg = "#6272a4", bg = "#000000" },
         },
         command = {
-            a = { fg = "#000000", bg = colors.command, gui = "bold" },
-            b = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#000000" },
             c = { fg = "#6272a4", bg = "#000000" },
         },
     }

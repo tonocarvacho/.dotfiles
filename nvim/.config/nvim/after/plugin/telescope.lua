@@ -5,23 +5,27 @@ require('telescope').setup{
     live_grep = {
       additional_args = function(_ts)
         return {"--hidden"}
-      end
+      end,
+      file_ignore_patterns = { "%.git/", "node_modules/", "%.obsidian/", "%.cache/" }
     },
 
     grep_string = {
       additional_args = function(_ts)
         return {"--hidden"}
-      end
+      end,
+      file_ignore_patterns = { "%.git/", "node_modules/", "%.obsidian/", "%.cache/" }
     },
 
     find_files = {
       hidden = true,
-      path_display = { "truncate" }
+      path_display = { "truncate" },
+      file_ignore_patterns = { "%.git/", "node_modules/", "%.obsidian/", "%.cache/" }
     },
 
     git_files = {
       hidden = true,
-      path_display = { "truncate" }
+      path_display = { "truncate" },
+      file_ignore_patterns = { "%.git/", "node_modules/", "%.obsidian/", "%.cache/" }
     },
   },
 }
@@ -34,7 +38,7 @@ vim.keymap.set('n', '<leader>ss', builtin.git_status, {})
 vim.keymap.set('n', '<leader>sb', builtin.git_branches, {})
 vim.keymap.set('n', '<leader>sv', builtin.git_bcommits, {})
 vim.keymap.set('n', '<leader>sc', builtin.git_commits, {})
---vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>sg', function()
   builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)

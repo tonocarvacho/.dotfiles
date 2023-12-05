@@ -35,7 +35,8 @@ disabled = true
 disabled = true
 
 [git_branch]
-disabled = true
+disabled = false
+symbol = " "
 
 [git_commit]
 disabled = true
