@@ -21,7 +21,6 @@ vim.keymap.set("n", "<C-k>", ":bp<CR>")
 vim.keymap.set("n", "<C-l>", ":bn<CR>")
 vim.keymap.set("n", "<C-j>", ":b#<CR>")
 
-vim.keymap.set("n", "<leader>p", ":DBUI<CR>")
 vim.keymap.set("n", "<leader>a", ":%bd|e#|bd#<CR>")
 --vim.keymap.set("n", "<C-f>", ":FloatermNew vifm<CR>")
 --vim.keymap.set("n", "<C-f>", "<cmd>tvf<CR>")
@@ -60,10 +59,17 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 --vim.ke.p.set("n", "<leader>v", [[*Ncw]])
 --vim.ke.p.set("n", "<leader>v", [[*Ncw]])
-vim.keymap.set("n", "<leader>d", '/<c-r>"<CR>')
+
+vim.keymap.set("n", "<leader>tt", ':DBUIToggle<CR>25<C-w>-:DBUIToggle<CR>G')
+--vim.keymap.set("n", "<leader>p", ":DBUI<CR>")
+--vim.keymap.set("n", "<leader>t", 'iselect current_user<C-c>:w<CR>:DBUIToggle<CR>10<C-w>-:DBUIToggle<CR>G')
+
+
 --vim.keymap.set("v", "<leader>v", [[:%s/\<<C-r><C-w>\>//g<Left><Left><C-r>]])
+vim.keymap.set("n", "<leader>n", '/<c-r>"<CR>')
 vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("v", "<leader>sr", [[y:%s/<c-r>"/<C-r>"/gI<Left><Left><Left>]])
+
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 --vim.keymap.set('v', '<leader>v', [[:%s]], { noremap = true, silent = true })
 --vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");

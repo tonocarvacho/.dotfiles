@@ -14,10 +14,15 @@ vicmd_symbol = "[\ue62b](white)" # 
 error_symbol = "[\uf467](#ff5555)" # 
 
 [line_break]
-disabled = true
+disabled = false
 
+#[directory]
+#style = "#8be9fd bold"
+#truncation_length = 2
 [directory]
-style = "#8be9fd bold"
+truncation_length = 2
+#truncation_symbol = "…/"
+truncate_to_repo = false
 
 [package]
 disabled = true
@@ -37,6 +42,7 @@ disabled = true
 [git_branch]
 disabled = false
 symbol = " "
+format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [git_commit]
 disabled = true
@@ -48,7 +54,17 @@ disabled = true
 disabled = true
 
 [git_status]
-disabled = true
+conflicted = "[󰕚 ](#ff5555)"
+ahead = "[ ${count} ](#50fa7b)"
+behind = "[ ${count} ](#ff5555)"
+diverged = "[󰙁  ${ahead_count} ${behind_count}](#00FFFF)"
+untracked = "[ ${count} ](#ffb86c)"
+stashed = "[  ](#50fa7b)"
+modified = "[ ${count} ](#bd93f9)"
+staged = "[ ${count} ](#50fa7b)"
+renamed = "[ ${count} ](#bd93f9)"
+deleted = "[ ${count} ](#ff5555)" 
+format = "$all_status$ahead_behind"
 
 [java]
 disabled = true

@@ -13,34 +13,34 @@ M.theme = function()
     }
     return {
         inactive = {
-            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
-            b = { fg = "#ff79c6", bg = "#000000" },
-            c = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#09080C", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#09080C" },
+            c = { fg = "#6272a4", bg = "#09080C" },
         },
         visual = {
-            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
-            b = { fg = "#ff79c6", bg = "#000000" },
-            c = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#09080C", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#09080C" },
+            c = { fg = "#6272a4", bg = "#09080C" },
         },
         replace = {
-            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
-            b = { fg = "#ff79c6", bg = "#000000" },
-            c = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#09080C", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#09080C" },
+            c = { fg = "#6272a4", bg = "#09080C" },
         },
         normal = {
-            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
-            b = { fg = "#ff79c6", bg = "#000000" },
-            c = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#09080C", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#09080C" },
+            c = { fg = "#6272a4", bg = "#09080C" },
         },
         insert = {
-            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
-            b = { fg = "#ff79c6", bg = "#000000" },
-            c = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#09080C", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#09080C" },
+            c = { fg = "#6272a4", bg = "#09080C" },
         },
         command = {
-            a = { fg = "#8be9fd", bg = "#000000", gui = "bold" },
-            b = { fg = "#ff79c6", bg = "#000000" },
-            c = { fg = "#6272a4", bg = "#000000" },
+            a = { fg = "#8be9fd", bg = "#09080C", gui = "bold" },
+            b = { fg = "#ff79c6", bg = "#09080C" },
+            c = { fg = "#6272a4", bg = "#09080C" },
         },
     }
 end

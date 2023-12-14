@@ -44,5 +44,9 @@ vim.keymap.set('n', '<leader>sg', function()
 end)
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>sl', ":Telescope buffers<CR>")
-vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
+vim.keymap.set('n', 'gr', builtin.lsp_references, {})
+
+require("telescope").load_extension("git_worktree")
+vim.keymap.set('n', '<leader>sa', ":lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>")
+vim.keymap.set('n', '<leader>sw', ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
 

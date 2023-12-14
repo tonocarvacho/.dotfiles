@@ -70,7 +70,8 @@ button:hover {
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
+  /*background-color: none;*/
+  color:#ff79c6;
 }
 
 #mode {

@@ -1,6 +1,16 @@
 local project_root = {
   function()
-    return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+    local current_working_directory = vim.fn.getcwd()
+    local parent_directory = vim.fn.fnamemodify(current_working_directory, ":h")
+    local last_parent_directory = vim.fn.fnamemodify(parent_directory, ":t")
+    local worktrees_directory = parent_directory .. '/worktrees'
+
+    -- Check if the 'worktrees' directory exists
+    if vim.fn.isdirectory(worktrees_directory) == 1 then
+      return last_parent_directory
+    else
+      return vim.fn.fnamemodify(current_working_directory, ":t")
+    end
   end,
   icon = "",
   cond = hide_in_width,
@@ -14,10 +24,27 @@ require('lualine').setup {
     disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
   },
 
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
+
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
   sections = {
     lualine_a = {
       project_root,
-       },
+    },
     lualine_b = {
       "branch",
     },
@@ -31,6 +58,11 @@ require('lualine').setup {
           removed = " ",
         },
         colored = true,
+        color = {
+          added = "#50FA7B",
+          modified = "#ffb86c",
+          removed = "#ff5555",
+        },
         always_visible = false,
         source = function()
           local gitsigns = vim.b.gitsigns_status_dict

@@ -1,0 +1,87 @@
+{
+  "explorer.confirmDelete": false,
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "security.workspace.trust.untrustedFiles": "open",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "colorize.languages": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "workbench.tree.indent": 20,
+  "workbench.iconTheme": "vscode-icons",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "C_Cpp.intelliSenseEngineFallback": "enabled",
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on"
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.startupEditor": "none",
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "C_Cpp.intelliSenseEngine": "Tag Parser",
+  "php.validate.executablePath": "",
+  "redhat.telemetry.enabled": false,
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "java.configuration.runtimes": [],
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "window.titleBarStyle": "custom",
+  "workbench.settings.applyToAllProfiles": [
+    "editor.fontFamily"
+  ],
+  "editor.fontVariations": false, 
+  "editor.fontFamily": "Courier New",
+  "editor.fontSize": 15,
+  "editor.fontWeight": "400",
+  "editor.codeLensFontFamily": "JetBrainsMono NF",
+  "debug.console.fontFamily": "JetBrainsMono NF",
+  "terminal.integrated.fontFamily": "JetBrainsMono NF",
+  "workbench.colorTheme": "Dracula",
+  "window.menuBarVisibility": "compact",
+  "workbench.activityBar.location": "top",
+  "workbench.colorCustomizations": {
+    "editor.background": "#09080C",
+    "activityBar.background": "#09080C",
+    "sideBar.background": "#09080C",
+    "minimap.background": "#09080C",
+    "editorGroup.border": "#09080C",
+    "editorGroupHeader.noTabsBackground": "#09080C",
+    "editorGroup.emptyBackground": "#09080C",
+    "tab.activeBackground": "#09080C",
+    "tab.unfocusedActiveBackground": "#09080C",
+    "tab.inactiveBackground": "#09080C",
+    "tab.unfocusedInactiveBackground": "#09080C",
+    "editorPane.background": "#09080C",
+    "panel.background": "#09080C",
+    "statusBar.background": "#09080C",
+    "titleBar.activeBackground": "#09080C",
+    "titleBar.inactiveBackground": "#09080C",
+    "menu.background": "#09080C",
+    "commandCenter.background": "#09080C",
+    "banner.background": "#09080C",
+    "terminal.background": "#09080C",
+    "welcomePage.background": "#09080C",
+    "breadcrumb.backgrund": "#09080C",
+    "actionBar.toggledBackground": "#09080C",
+    "scrollbarSlider.background": "#09080C",
+    "sideBarSectionHeader.background": "#09080C",
+    "editorGroupHeader.tabsBackground": "#09080C",
+    "editor.lineHighlightBorder": "#09080C",
+  },
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": false,
+  "workbench.editor.showTabs": "none"
+}
